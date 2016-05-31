@@ -1,5 +1,5 @@
 package gui;
-
+//test comment
 import game.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -33,8 +33,7 @@ public class GameFrame extends Application{
 	private Label labelP2;
 	private Label infoLabel;
 	private Button endButton;
-	private Button restartButton;
-	
+
 	
 	public static void main(String []args){
 		Application.launch(args);
