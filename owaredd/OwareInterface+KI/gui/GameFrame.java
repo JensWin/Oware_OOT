@@ -244,8 +244,18 @@ public class GameFrame extends Application{
 		Button OK = new Button("OK!");
 		OK.getStyleClass().add("buttonAuswahl");
 		OK.setOnAction((ActionEvent e) -> {
-			player1= new Player(name1Field.getText());
-			player2= new Player(name2Field.getText());
+			if(name1Field.getText().isEmpty()){
+				player1= new Player("Player 1");
+			}else{
+				player1= new Player(name1Field.getText());
+			}
+			if(name2Field.getText().isEmpty()){
+				player2= new Player("Player 2");
+			}else{
+				player2= new Player(name2Field.getText());
+			}
+			
+			
 			board = new Board(player1, player2,this);
 			Game(board,primaryStage);
 		});
@@ -323,7 +333,13 @@ public class GameFrame extends Application{
 		Button OK = new Button("OK!");
 		OK.getStyleClass().add("buttonAuswahl");
 		OK.setOnAction((ActionEvent e) -> {
-			this.player2= new Player(nameField.getText());
+			if(nameField.getText().isEmpty()){
+				this.player2 = new Player("Player 2");
+			}
+			else{
+				this.player2= new Player(nameField.getText());
+			}
+			
 			int difficulty;
 			if(rb1.isSelected()){
 				difficulty=0;
