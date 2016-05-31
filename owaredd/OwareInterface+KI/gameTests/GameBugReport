@@ -3,3 +3,4 @@ Klasse Player
     gelassen werden "" Fehler ja? nein?
     - Player.setSpielsteine() Funktion, Spielsteine können < 0 sein + man kann beliebig viele Steine setzen z.B 99999
     auch ein Fehler oder nicht?
+	-lel
