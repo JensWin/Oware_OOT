@@ -1,10 +1,8 @@
 package gameTests;
 
+
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -157,7 +155,21 @@ public class PlayerTest
         assertTrue(player.getName().equals("TestyBoy"));
         assertFalse(!player.getName().equals("TestyBoy"));
 
+        player.setSpielSteineSpieler(8);
+        assertThat(player.getSpielSteineSpieler(), is(8));
+        assertTrue(player.getSpielSteineSpieler() == 8);
+        assertFalse(player.getSpielSteineSpieler() != 8);
 
+        for (int i = 7; i > 0 ; i--) {
+            player.setSpielSteineSpieler(i);
+            assertThat(player.getSpielSteineSpieler(), is(i));
+            assertTrue(player.getSpielSteineSpieler() == i);
+            assertFalse(player.getSpielSteineSpieler() != i);
+        }
+
+        player.setSpielSteineSpieler(0);
+        assertTrue(player.getSpielSteineSpieler() == 0);
+        assertFalse(player.getSpielSteineSpieler() != 0);
     }
 
 
