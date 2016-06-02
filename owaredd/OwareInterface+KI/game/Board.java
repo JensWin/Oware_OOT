@@ -3,7 +3,7 @@ package game;
 import gui.GameFrame;
 
 public class Board {
-	
+
 	public int[][] board = new int[2][6];
 	private byte spielerZug;
 	private Player player[] = new Player[2];
@@ -21,9 +21,10 @@ public class Board {
 		this.frame = frame;
 		resetBoard();
 	}
-	
+
 	/**
 	 * Konstruktor fuer ComputerSpiel
+	 * 
 	 * @param player1
 	 * @param player2
 	 * @param frame
@@ -99,8 +100,9 @@ public class Board {
 	}
 
 	/**
-	 * steal()
-	 * Sammelt Steine ein und fuegt sie zum Punktekontos des Spieler hinzu
+	 * steal() Sammelt Steine ein und fuegt sie zum Punktekontos des Spieler
+	 * hinzu
+	 * 
 	 * @param player
 	 * @param spalte
 	 */
@@ -124,8 +126,8 @@ public class Board {
 	}
 
 	/**
-	 * turn()
-	 * Zum Zug ausfuehren
+	 * turn() Zum Zug ausfuehren
+	 * 
 	 * @param player
 	 * @param spalte
 	 */
@@ -162,34 +164,51 @@ public class Board {
 			} else {
 
 				spielerZug ^= 1;
-				frame.setInfo(this.player[spielerZug ^ 1].getName() + " hat "
-						+ (this.player[spielerZug ^ 1].getSpielSteineSpieler() - tempPunkte) + " Steine geraubt");// Aktualisiert
-																													// Text
-				frame.printButtonValues(); // Aktualisiert buttons
+				if (spielerZug == 0) {
+					frame.setInfoP2(this.player[spielerZug ^ 1].getName() + " hat "
+							+ (this.player[spielerZug ^ 1].getSpielSteineSpieler() - tempPunkte) + " Steine geraubt");// Aktualisiert
+																														// Text
+					frame.printButtonValues(); // Aktualisiert buttons
 
-				if (!winnerCheck()) // �berpr�ft ob gegner eine KI ist
-					checkKITurn();
+					if (!winnerCheck()) // �berpr�ft ob gegner eine KI ist
+						checkKITurn();
+				} else {
+					frame.setInfoP1(this.player[spielerZug ^ 1].getName() + " hat "
+							+ (this.player[spielerZug ^ 1].getSpielSteineSpieler() - tempPunkte) + " Steine geraubt");// Aktualisiert
+																														// Text
+					frame.printButtonValues(); // Aktualisiert buttons
+
+					if (!winnerCheck()) // �berpr�ft ob gegner eine KI ist
+						checkKITurn();
+				}
 			}
 		}
 	}
 
 	/**
-	 * winnerCheck()
-	 * Ueberprueft ob ein Gewinner bereits feststeht
+	 * winnerCheck() Ueberprueft ob ein Gewinner bereits feststeht
+	 * 
 	 * @return true / false
 	 */
 	public boolean winnerCheck() {
 		if (player[spielerZug ^ 1].getSpielSteineSpieler() > 24) {
-			frame.setInfo(player[spielerZug].getName() + " gewinnt!");
-			frame.gameEnde();
-			return true;
+			if (spielerZug == 0) {
+				frame.setInfoP2(player[spielerZug].getName() + " gewinnt!");
+				frame.gameEnde();
+				return true;
+			} else {
+				frame.setInfoP1(player[spielerZug].getName() + " gewinnt!");
+				frame.gameEnde();
+				return true;
+			}
+
 		} else
 			return false;
 	}
 
 	/**
-	 * winningPlayer()
-	 * Gibt den Gewinner zurueck
+	 * winningPlayer() Gibt den Gewinner zurueck
+	 * 
 	 * @return
 	 */
 	public Player winningPlayer() {
@@ -202,8 +221,7 @@ public class Board {
 	}
 
 	/**
-	 * checkKIturn()
-	 * Prueft ob der naechste Zug ein Computerzug ist
+	 * checkKIturn() Prueft ob der naechste Zug ein Computerzug ist
 	 */
 	public void checkKITurn() {
 		if (this.player[spielerZug].getKI()) {
@@ -212,8 +230,7 @@ public class Board {
 	}
 
 	/**
-	 * endeSteal()
-	 * sammelt alle uebrigen Steine am Ende des Spiels ein
+	 * endeSteal() sammelt alle uebrigen Steine am Ende des Spiels ein
 	 */
 	public void endeSteal() {
 		for (int j = 0; j < 2; j++) {
@@ -225,20 +242,20 @@ public class Board {
 	}
 
 	/**
-	 * noTurnPossible()
-	 * Stellt fest ob kein Zug mehr moeglich ist
+	 * noTurnPossible() Stellt fest ob kein Zug mehr moeglich ist
+	 * 
 	 * @return
 	 */
 	public boolean noTurnPossible() {
 
 		for (int i = 0; i < 6; i++) {
-			if (check(spielerZug, i)) {
+			if (check(spielerZug, i) || check(spielerZug ^ 1, i)) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	public byte getSpielerZug() {
 		return spielerZug;
 	}
@@ -261,6 +278,5 @@ public class Board {
 		}
 		return s;
 	}
-	
 
 }

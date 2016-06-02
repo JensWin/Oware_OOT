@@ -28,7 +28,8 @@ public class GameFrame extends Application {
 	private Button[][] buttons;
 	private Label labelP1;
 	private Label labelP2;
-	private Label infoLabel;
+	private Label infoLabelP1;
+	private Label infoLabelP2;
 	private Button endButton;
 
 	public static void main(String[] args) {
@@ -128,8 +129,16 @@ public class GameFrame extends Application {
 	 * 
 	 * @param s
 	 */
-	public void setInfo(String s) {
-		infoLabel.setText(s);
+	public void setInfoP1(String s) {
+		infoLabelP1.setText(s);
+	}
+	
+	 /** setInfo() InfoLabel wird beschrieben
+	 * 
+	 * @param s
+	 */
+	public void setInfoP2(String s) {
+		infoLabelP2.setText(s);
 	}
 
 	/**
@@ -151,9 +160,9 @@ public class GameFrame extends Application {
 		}
 
 		if (board.winningPlayer() == null) {
-			setInfo("Unentschieden");
+			setInfoP1("Unentschieden");
 		} else
-			setInfo(board.winningPlayer().getName() + " gewinnt");
+			setInfoP1(board.winningPlayer().getName() + " gewinnt");
 
 	}
 
@@ -445,7 +454,7 @@ public class GameFrame extends Application {
 		// GridBottom
 		GridPane gridBottom = new GridPane();
 		// gridBottom.setHgap(100);
-		infoLabel = new Label("Hier kommen die Infos!");
+		
 		endButton = new Button("Ende");
 		endButton.getStyleClass().add("buttonEnde");
 
@@ -454,9 +463,16 @@ public class GameFrame extends Application {
 		});
 
 		gridBottom.add(endButton, 0, 0);
-
-		gridBottom.add(infoLabel, 3, 0);
-
+		
+		
+		//GridInfo
+		GridPane infoGrid = new GridPane();
+		infoLabelP1 = new Label("Hier kommen die Infos fuer Player1!");
+		infoLabelP2 = new Label("Hier kommen die Infos fuer Player2!");
+		infoGrid.add(infoLabelP1, 0, 0);
+		infoGrid.add(infoLabelP2, 0, 1);
+		
+		gridBottom.add(infoGrid, 3, 0);
 		// Menübar
 		MenuBar menuBar = new MenuBar();
 

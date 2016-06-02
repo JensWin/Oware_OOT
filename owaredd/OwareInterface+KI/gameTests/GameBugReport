@@ -27,6 +27,9 @@ Im Spiel
 		wurden getestet und waren fehlerfrei
 		
 	- Spiel beendet sich manchmal nicht richtig
+	
 	- Spieler kann den Namen beliebig lang machen --> Anzahl der geraubten Steine nicht mehr erkennbar
+	
 	- In den Infos steht nur wie viele Steine der Computer raubt, vielleicht sollte man auch die geraubten Steine des Spielers unten ausgeben
-		
+	
+	-- Fixed, fehlt nur noch etwas Feinschliff	
