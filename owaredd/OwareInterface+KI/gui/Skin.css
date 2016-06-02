@@ -16,9 +16,9 @@
 }
 //Label bei Creditsüberschriften
 .labelProg{
-	 -fx-font-size: 15pt;
+	 -fx-font-size: 10pt;
     -fx-font-family: "arial black";
-    -fx-text-fill:white;
+    -fx-text-fill:#ff8000;
     -fx-opacity: 1;
 }
 

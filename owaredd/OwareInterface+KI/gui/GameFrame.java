@@ -173,7 +173,7 @@ public class GameFrame extends Application {
 
 	public void vsChoice(Stage primaryStage) {
 
-		primaryStage.setTitle("vsChoice");
+		primaryStage.setTitle("OWARE");
 		BorderPane border = new BorderPane();
 
 		Button vsPlayerB = new Button("vsPlayer");
@@ -226,7 +226,7 @@ public class GameFrame extends Application {
 	}
 
 	public void vsPlayer(Stage primaryStage) {
-		primaryStage.setTitle("setNames");
+		primaryStage.setTitle("OWARE");
 		BorderPane border = new BorderPane();
 		GridPane grid = new GridPane();
 
@@ -237,9 +237,29 @@ public class GameFrame extends Application {
 		labelP1 = new Label("Name Spieler 1:\n(Max. 20 Zeichen)");
 		labelP2 = new Label("Name Spieler 2:\n(Max. 20 Zeichen)");
 
-		Button OK = new Button("OK!");
-		OK.getStyleClass().add("buttonAuswahl");
-		OK.setOnAction((ActionEvent e) -> {
+		grid.add(labelP1, 0, 0);
+		grid.add(labelP2, 0, 1);
+		grid.add(name1Field, 1, 0);
+		grid.add(name2Field, 1, 1);
+		grid.setHgap(100);
+		grid.setVgap(50);
+		grid.setAlignment(Pos.CENTER);
+
+		// Menübar
+		MenuBar menuBar = new MenuBar();
+
+		Menu menuRestart = new Menu("Restart");
+		Menu menuHelp = new Menu("Help");
+		Menu menuBack = new Menu("Back");
+		Menu menuStart = new Menu("Start Game");
+		
+		MenuItem CompleteMenuItem = new MenuItem("Complete");
+		MenuItem anleitung = new MenuItem("Anleitung");
+		MenuItem credits = new MenuItem("Credits");
+		MenuItem back = new MenuItem("<= Back");
+		MenuItem start = new MenuItem("Start!");
+		
+		start.setOnAction((ActionEvent e) -> {
 			if (name1Field.getText().isEmpty() || name1Field.getText().length() > 20) {
 				player1 = new Player("Player 1");
 			} else {
@@ -254,43 +274,24 @@ public class GameFrame extends Application {
 			board = new Board(player1, player2, this);
 			Game(board, primaryStage);
 		});
-
-		Button back = new Button("Back");
-		back.getStyleClass().add("buttonBack");
+			
 		back.setOnAction((ActionEvent e) -> {
 			vsChoice(primaryStage);
 		});
-
-		grid.add(labelP1, 0, 0);
-		grid.add(labelP2, 0, 1);
-		grid.add(name1Field, 1, 0);
-		grid.add(name2Field, 1, 1);
-		grid.add(OK, 0, 2);
-		grid.add(back, 1, 2);
-		grid.setHgap(100);
-		grid.setVgap(50);
-		grid.setAlignment(Pos.CENTER);
-
-		// Menübar
-		MenuBar menuBar = new MenuBar();
-
-		Menu menuRestart = new Menu("Restart");
-		Menu menuHelp = new Menu("Help");
-
-		MenuItem CompleteMenuItem = new MenuItem("Complete");
-		MenuItem anleitung = new MenuItem("Anleitung");
-		MenuItem credits = new MenuItem("Credits");
-
+		
+		
 		CompleteMenuItem.setOnAction(actionEvent -> restart(primaryStage));
 		anleitung.setOnAction(actionEvent -> anleitung(primaryStage));
 		credits.setOnAction(actionEvent -> showCredits(primaryStage));
 
 		menuRestart.getItems().addAll(CompleteMenuItem);
 		menuHelp.getItems().addAll(anleitung, credits);
-
-		menuBar.getMenus().addAll(menuRestart, menuHelp);
+		menuBack.getItems().addAll(back);
+		menuStart.getItems().addAll(start);
+		menuBar.getMenus().addAll(menuBack,menuStart, menuRestart, menuHelp);
 
 		// Menübar ende
+		
 		border.setCenter(grid);
 		border.setTop(menuBar);
 
@@ -303,7 +304,7 @@ public class GameFrame extends Application {
 	}
 
 	public void vsKI(Stage primaryStage) {
-		primaryStage.setTitle("setNames&Difficulty");
+		primaryStage.setTitle("OWARE");
 		BorderPane border = new BorderPane();
 		GridPane grid = new GridPane();
 		GridPane gridChoice = new GridPane();
@@ -326,9 +327,33 @@ public class GameFrame extends Application {
 		rb1.getStyleClass().add("buttonKI");
 		rb2.getStyleClass().add("buttonKI");
 		rb3.getStyleClass().add("buttonKI");
-		Button OK = new Button("OK!");
-		OK.getStyleClass().add("buttonAuswahl");
-		OK.setOnAction((ActionEvent e) -> {
+	
+		grid.add(labelP, 0, 0);
+		grid.add(nameField, 1, 0);
+		gridChoice.add(rb1, 0, 0);
+		gridChoice.add(rb2, 0, 1);
+		gridChoice.add(rb3, 0, 2);
+		gridChoice.setVgap(30);
+		grid.add(gridChoice, 1, 1);
+		grid.setHgap(100);
+		grid.setVgap(50);
+		grid.setAlignment(Pos.CENTER);
+
+		// Menübar
+		MenuBar menuBar = new MenuBar();
+
+		Menu menuRestart = new Menu("Restart");
+		Menu menuHelp = new Menu("Help");
+		Menu menuBack = new Menu("Back");
+		Menu menuStart = new Menu("Start Game");
+		
+		MenuItem CompleteMenuItem = new MenuItem("Complete");
+		MenuItem anleitung = new MenuItem("Anleitung");
+		MenuItem credits = new MenuItem("Credits");
+		MenuItem back = new MenuItem("<= Back");
+		MenuItem start = new MenuItem("Start!");
+		
+		start.setOnAction((ActionEvent e) -> {
 			if (nameField.getText().isEmpty() || nameField.getText().length() > 20) {
 				this.player2 = new Player("Player 2");
 			} else {
@@ -347,44 +372,21 @@ public class GameFrame extends Application {
 			board = new Board(ki, player2, this);
 			Game(board, primaryStage);
 		});
-
-		Button back = new Button("Back");
-		back.getStyleClass().add("buttonBack");
+			
 		back.setOnAction((ActionEvent e) -> {
 			vsChoice(primaryStage);
 		});
-
-		grid.add(labelP, 0, 0);
-		grid.add(nameField, 1, 0);
-		grid.add(OK, 0, 1);
-		grid.add(back, 0, 3);
-		gridChoice.add(rb1, 0, 0);
-		gridChoice.add(rb2, 0, 1);
-		gridChoice.add(rb3, 0, 2);
-		gridChoice.setVgap(30);
-		grid.add(gridChoice, 1, 1);
-		grid.setHgap(100);
-		grid.setVgap(50);
-		grid.setAlignment(Pos.CENTER);
-
-		// Menübar
-		MenuBar menuBar = new MenuBar();
-
-		Menu menuRestart = new Menu("Restart");
-		Menu menuHelp = new Menu("Help");
-
-		MenuItem CompleteMenuItem = new MenuItem("Complete");
-		MenuItem anleitung = new MenuItem("Anleitung");
-		MenuItem credits = new MenuItem("Credits");
-
+		
+		
 		CompleteMenuItem.setOnAction(actionEvent -> restart(primaryStage));
 		anleitung.setOnAction(actionEvent -> anleitung(primaryStage));
 		credits.setOnAction(actionEvent -> showCredits(primaryStage));
 
 		menuRestart.getItems().addAll(CompleteMenuItem);
 		menuHelp.getItems().addAll(anleitung, credits);
-
-		menuBar.getMenus().addAll(menuRestart, menuHelp);
+		menuBack.getItems().addAll(back);
+		menuStart.getItems().addAll(start);
+		menuBar.getMenus().addAll(menuBack,menuStart, menuRestart, menuHelp);
 
 		// Menübar ende
 
@@ -523,61 +525,54 @@ public class GameFrame extends Application {
 
 	private void anleitung(Stage primaryStage) {
 		primaryStage.setTitle("Anleitung");
+		BorderPane king = new BorderPane();
 		BorderPane master = new BorderPane();
 		GridPane grid = new GridPane();
-		Label Schritt1 = new Label("1. Wähle deinen Gegenspieler");
-		Label Schritt2 = new Label(
-				"2. Gib deinen Namen ein und den deines Gegenspielers \nbzw. wähle die Schwierigkeit des Gegners");
-		Label Schritt3 = new Label(
-				"3. Versuche so viele Steine wie möglich zu sammeln\n Wenn dein letzter Stein des Zuges im\n gegnerischen Feld landet und genau 2 oder 3 \nSteine in der Schale liegen, nimm die Steine");
-		Label Schritt4 = new Label(
-				"4. Falls das Feld vorher ebenfalls genau 2 oder 3 Steine \nbeinhaltet, nimm diese ebenfalls");
-
+		Label Schritt1 = new Label("1. Wähle deinen Gegenspieler\n"
+				+ "2. Gib deinen Namen ein und den deines Gegenspielers \n    bzw. wähle die Schwierigkeit des Gegners.\n"
+				+ "3. Jeder Spieler besitzt 6 Mulden mit jeweils 4 Steinen. Gesaet wird gegen den\n    Uhrzeigersinn.Dabei wird jedesmal ein Stein im nachfolgenden Feld abgelegt.\n"
+				+ "4. Wenn in einem Zug zum Abschluss des Aussäens der Spielsteine in der\n    gegnerischen Mulde des letzten gesäten Steins (inklusive des letzten gesäten\n    Steins) zwei oder drei Steine liegen, dann werden diese Steine gefangen.\n    Liegen in den Mulden davor ebenfalls zwei oder drei Steine werden diese ebenfalls\n    gefangen.\n"
+				+ "5. Wenn der Gegner keine Steine mehr hat, muss man so säen, dass er wieder Steine bekommt.\n    Ist dies nicht möglich nimmt der Spieler die Steine in sein Gewinndepot auf.\n"
+				+ "6. Gewonnen hat der Spieler, der zuerst mehr als 24 Steine hat.");
 		Schritt1.getStyleClass().add("labelProg");
-		Schritt2.getStyleClass().add("labelProg");
-		Schritt3.getStyleClass().add("labelProg");
-		Schritt4.getStyleClass().add("labelProg");
 
 		grid.add(Schritt1, 0, 0);
-		grid.add(Schritt2, 0, 1);
-		grid.add(Schritt3, 0, 2);
-		grid.add(Schritt4, 0, 3);
-
-		Button back = new Button("Back");
-		back.getStyleClass().add("buttonBack");
-		back.setOnAction((ActionEvent e) -> {
-			vsChoice(primaryStage);
-		});
 
 		// Menübar
 		MenuBar menuBar = new MenuBar();
 
 		Menu menuRestart = new Menu("Restart");
 		Menu menuHelp = new Menu("Help");
-
+		Menu menuBack = new Menu("Back");
+		
 		MenuItem CompleteMenuItem = new MenuItem("Complete");
 		MenuItem anleitung = new MenuItem("Anleitung");
 		MenuItem credits = new MenuItem("Credits");
-
+		MenuItem back = new MenuItem("<= Back");
+		back.setOnAction((ActionEvent e) -> {
+			vsChoice(primaryStage);
+		});
+		
 		CompleteMenuItem.setOnAction(actionEvent -> restart(primaryStage));
 		anleitung.setOnAction(actionEvent -> anleitung(primaryStage));
 		credits.setOnAction(actionEvent -> showCredits(primaryStage));
 
 		menuRestart.getItems().addAll(CompleteMenuItem);
 		menuHelp.getItems().addAll(anleitung, credits);
+		menuBack.getItems().addAll(back);
 
-		menuBar.getMenus().addAll(menuRestart, menuHelp);
+		menuBar.getMenus().addAll(menuBack, menuRestart, menuHelp);
 
 		// Menübar ende
 
-		grid.add(back, 1, 2);
 		grid.setHgap(50);
 		grid.setVgap(50);
 		grid.setAlignment(Pos.CENTER);
-
+		
 		master.setCenter(grid);
 		master.setTop(menuBar);
-		Scene scene = new Scene(master, 800, 500);
+		king.setTop(master);
+		Scene scene = new Scene(king, 800, 500);
 		scene.getStylesheets().add("gui/Skin.css");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
