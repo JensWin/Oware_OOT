@@ -21,3 +21,9 @@ Im Spiel
 	- Spielzug von KI schon ausgefÃ¼hrt, wenn er den ersten Zug macht, wenn das Spielfeld angezeigt wird --> evtl. verwirrend
 	
 	-- Geht nicht anders. Programm hängt sich auf oder stürzt ab, das komplette Programm müsste anders ausgelegt werden.
+	
+	- Spiel gegen Computer: manchmal muss man mittendrin den Zug des Computers ausfuehren, danach funktioniert er wieder normal.
+		Rausfinden wann der Fehler auftritt!
+		
+	- Spiel beendet sich manchmal nicht richtig
+		
