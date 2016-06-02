@@ -16,4 +16,8 @@ Im Spiel
 
 	- die Schriftfarbe zum AuswÃ¤hlen des Schwierigkeitgrads ist schwarz --> auf dem Hintergrund kaum lesbar
 	
+	-- Gefixed.
+	
 	- Spielzug von KI schon ausgefÃ¼hrt, wenn er den ersten Zug macht, wenn das Spielfeld angezeigt wird --> evtl. verwirrend
+	
+	-- Geht nicht anders. Programm hängt sich auf oder stürzt ab, das komplette Programm müsste anders ausgelegt werden.

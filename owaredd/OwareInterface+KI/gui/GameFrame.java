@@ -312,7 +312,10 @@ public class GameFrame extends Application {
 		rb3.setToggleGroup(group);
 
 		rb1.setSelected(true);
-
+		
+		rb1.getStyleClass().add("buttonKI");
+		rb2.getStyleClass().add("buttonKI");
+		rb3.getStyleClass().add("buttonKI");
 		Button OK = new Button("OK!");
 		OK.getStyleClass().add("buttonAuswahl");
 		OK.setOnAction((ActionEvent e) -> {
