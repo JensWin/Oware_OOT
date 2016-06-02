@@ -24,7 +24,10 @@ Im Spiel
 	
 	- Spiel gegen Computer: manchmal muss man mittendrin den Zug des Computers ausfuehren, danach funktioniert er wieder normal.
 		Rausfinden wann der Fehler auftritt! Tritt bis jetzt nur im Schwierigkeitsgrad "normal" auf, scheint nur den Spielmodus normal zu betreffen easy und hard 
-		wurden getestet und waren fehlerfrei
+		wurden getestet und waren fehlerfrei.
+		
+		-- sollte gefixed sein.
+			
 		
 	- Spiel beendet sich manchmal nicht richtig
 	

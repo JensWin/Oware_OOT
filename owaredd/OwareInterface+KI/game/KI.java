@@ -53,18 +53,36 @@ public class KI extends Player {
 			}
 
 			tempCounter += fakeTurn(board, 0, i, boardArray);
-
+			
+			System.out.println("Pointcounter: " + pointCounter);
+			System.out.println("tempcounter: " + tempCounter);
 			if (pointCounter == tempCounter) {
+			
+				
 				if (Math.random() < 0.5) { // Random bei gleichheit
-					pointCounter = tempCounter;
-					saveTurn = i;
+					if(board.check(0, i)){
+						pointCounter = tempCounter;
+						saveTurn = i;
+						System.out.println("SaveTurn = "+ i);
+					}
+				
 				}
+				
+				
 			} else if (pointCounter < tempCounter) {
 				saveTurn = i;
 				pointCounter = tempCounter;
-			}
+				System.out.println("SaveTurn = "+ i);
+			} 
 		}
-		board.turn(0, saveTurn);
+		while(!board.check(0, saveTurn)){
+			saveTurn++;
+		}
+		if(board.check(0, saveTurn)){
+			System.out.println("Mache Zug: " + saveTurn);
+			board.turn(0, saveTurn);
+		}
+		
 	}
 
 	private void turnHard(Board board) {
