@@ -1,7 +1,10 @@
 package game;
 
+import gui.GameFrame;
+
 public class KI extends Player {
 	
+	GameFrame frame = new GameFrame();
 	private int difficulty;
 
 	public KI(int difficulty) {
@@ -12,6 +15,7 @@ public class KI extends Player {
 	}
 
 	public void turn(Board board) {
+		board.frame.printButtonValues();
 		if (difficulty == 0) {
 			turnEasy(board);
 		} else if (difficulty == 1) {
@@ -65,7 +69,6 @@ public class KI extends Player {
 						saveTurn = i;
 						System.out.println("SaveTurn = "+ i);
 					}
-				
 				}
 				
 				
@@ -75,10 +78,18 @@ public class KI extends Player {
 				System.out.println("SaveTurn = "+ i);
 			} 
 		}
+		
 		while(!board.check(0, saveTurn)){
 			saveTurn++;
 		}
 		if(board.check(0, saveTurn)){
+			
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println("Mache Zug: " + saveTurn);
 			board.turn(0, saveTurn);
 		}

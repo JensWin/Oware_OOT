@@ -192,16 +192,9 @@ public class Board {
 	 */
 	public boolean winnerCheck() {
 		if (player[spielerZug ^ 1].getSpielSteineSpieler() > 24) {
-			if (spielerZug == 0) {
-				frame.setInfoP2(player[spielerZug].getName() + " gewinnt!");
+			//	frame.setInfoWin(player[spielerZug].getName() + " gewinnt!");
 				frame.gameEnde();
 				return true;
-			} else {
-				frame.setInfoP1(player[spielerZug].getName() + " gewinnt!");
-				frame.gameEnde();
-				return true;
-			}
-
 		} else
 			return false;
 	}

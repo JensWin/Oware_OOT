@@ -30,6 +30,7 @@ public class GameFrame extends Application {
 	private Label labelP2;
 	private Label infoLabelP1;
 	private Label infoLabelP2;
+	private Label infoLabelWin;
 	private Button endButton;
 
 	public static void main(String[] args) {
@@ -140,7 +141,11 @@ public class GameFrame extends Application {
 	public void setInfoP2(String s) {
 		infoLabelP2.setText(s);
 	}
-
+	
+	public void setInfoWin(String s) {
+		infoLabelWin.setText(s);
+	}
+	
 	/**
 	 * gameEnde() Wenn Spiel zuende ist, müssen alle Buttons disabled werden und
 	 * der Gewinner bzw unentschieden ausgegeben werden
@@ -160,9 +165,9 @@ public class GameFrame extends Application {
 		}
 
 		if (board.winningPlayer() == null) {
-			setInfoP1("Unentschieden");
+			setInfoWin("Unentschieden");
 		} else
-			setInfoP1(board.winningPlayer().getName() + " gewinnt");
+			setInfoWin(board.winningPlayer().getName() + " gewinnt");
 
 	}
 
@@ -229,18 +234,18 @@ public class GameFrame extends Application {
 
 		TextField name2Field = new TextField();
 
-		labelP1 = new Label("Name Spieler 1: ");
-		labelP2 = new Label("Name Spieler 2: ");
+		labelP1 = new Label("Name Spieler 1:\n(Max. 20 Zeichen)");
+		labelP2 = new Label("Name Spieler 2:\n(Max. 20 Zeichen)");
 
 		Button OK = new Button("OK!");
 		OK.getStyleClass().add("buttonAuswahl");
 		OK.setOnAction((ActionEvent e) -> {
-			if (name1Field.getText().isEmpty()) {
+			if (name1Field.getText().isEmpty() || name1Field.getText().length() > 20) {
 				player1 = new Player("Player 1");
 			} else {
 				player1 = new Player(name1Field.getText());
 			}
-			if (name2Field.getText().isEmpty()) {
+			if (name2Field.getText().isEmpty() || name1Field.getText().length() > 20) {
 				player2 = new Player("Player 2");
 			} else {
 				player2 = new Player(name2Field.getText());
@@ -304,7 +309,7 @@ public class GameFrame extends Application {
 		GridPane gridChoice = new GridPane();
 
 		TextField nameField = new TextField();
-		Label labelP = new Label("Name Spieler: ");
+		Label labelP = new Label("Name Spieler:\nMax. 20 Zeichen");
 
 		ToggleGroup group = new ToggleGroup();
 
@@ -324,7 +329,7 @@ public class GameFrame extends Application {
 		Button OK = new Button("OK!");
 		OK.getStyleClass().add("buttonAuswahl");
 		OK.setOnAction((ActionEvent e) -> {
-			if (nameField.getText().isEmpty()) {
+			if (nameField.getText().isEmpty() || nameField.getText().length() > 20) {
 				this.player2 = new Player("Player 2");
 			} else {
 				this.player2 = new Player(nameField.getText());
@@ -441,8 +446,11 @@ public class GameFrame extends Application {
 		GridPane gridTop = new GridPane();
 		labelP1 = new Label(player1.getName() + ": " + player1.getSpielSteineSpieler());
 		labelP2 = new Label(player2.getName() + ": " + player2.getSpielSteineSpieler());
+		infoLabelWin = new Label("");
+		
 		gridTop.add(labelP1, 1, 0);
 		gridTop.add(labelP2, 1, 1);
+		gridTop.add(infoLabelWin, 1, 3);
 		gridTop.setAlignment(Pos.CENTER);
 
 		// Middle
@@ -469,6 +477,7 @@ public class GameFrame extends Application {
 		GridPane infoGrid = new GridPane();
 		infoLabelP1 = new Label("Hier kommen die Infos fuer Player1!");
 		infoLabelP2 = new Label("Hier kommen die Infos fuer Player2!");
+		
 		infoGrid.add(infoLabelP1, 0, 0);
 		infoGrid.add(infoLabelP2, 0, 1);
 		

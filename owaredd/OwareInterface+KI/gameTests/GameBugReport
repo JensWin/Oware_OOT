@@ -2,12 +2,12 @@ Klasse Player
     - Player.setName() Funktion, null kann Ã¼bergeben --> getName() wirft NullpointerException. Der Name kann auch leer
     gelassen werden "" 
     
-    -- Nutzer hat keinen Zugriff auf Quellcode. Bei leerem Namenfeld wird Player1 bzw Player2 gesetzt.
+   		 -- Nutzer hat keinen Zugriff auf Quellcode. Bei leerem Namenfeld wird Player1 bzw Player2 gesetzt.
     
     - Player.setSpielsteine() Funktion, Spielsteine kÃ¶nnen < 0 sein + man kann beliebig viele Steine setzen z.B 99999
     auch ein Fehler oder nicht?
 	
-	-- Nutzer hat keinen Zugriff auf Quellcode.
+		-- Nutzer hat keinen Zugriff auf Quellcode.
 	
 Player vollstÃ¤ndig getestet 
 
@@ -16,23 +16,24 @@ Im Spiel
 
 	- die Schriftfarbe zum AuswÃ¤hlen des Schwierigkeitgrads ist schwarz --> auf dem Hintergrund kaum lesbar
 	
-	-- Gefixed.
+		-- Gefixed.
 	
 	- Spielzug von KI schon ausgefÃ¼hrt, wenn er den ersten Zug macht, wenn das Spielfeld angezeigt wird --> evtl. verwirrend
 	
-	-- Geht nicht anders. Programm hängt sich auf oder stürzt ab, das komplette Programm müsste anders ausgelegt werden.
+		-- Geht nicht anders. Programm hängt sich auf oder stürzt ab, das komplette Programm müsste anders ausgelegt werden.
 	
 	- Spiel gegen Computer: manchmal muss man mittendrin den Zug des Computers ausfuehren, danach funktioniert er wieder normal.
 		Rausfinden wann der Fehler auftritt! Tritt bis jetzt nur im Schwierigkeitsgrad "normal" auf, scheint nur den Spielmodus normal zu betreffen easy und hard 
 		wurden getestet und waren fehlerfrei.
 		
 		-- sollte gefixed sein.
-			
-		
-	- Spiel beendet sich manchmal nicht richtig
 	
 	- Spieler kann den Namen beliebig lang machen --> Anzahl der geraubten Steine nicht mehr erkennbar
 	
+		-- Maximal 20 Zeichen, wenn mehr eingegeben werden, wird der Name auf Player1 bzw. Player2 gesetzt.
+	
 	- In den Infos steht nur wie viele Steine der Computer raubt, vielleicht sollte man auch die geraubten Steine des Spielers unten ausgeben
 	
-	-- Fixed, fehlt nur noch etwas Feinschliff	
+		-- Fixed. Wird jetzt für beide angezeigt und der Gewinner über dem Spielfeld.
+	
+	- Spiel beendet sich manchmal nicht richtig
