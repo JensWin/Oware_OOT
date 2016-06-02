@@ -1,6 +1,7 @@
 package game;
 
 public class KI extends Player {
+	
 	private int difficulty;
 
 	public KI(int difficulty) {
@@ -21,7 +22,7 @@ public class KI extends Player {
 
 	}
 
-	public void turnEasy(Board board) {
+	private void turnEasy(Board board) {
 		int i;
 		while (true) {
 			i = (int) (Math.random() * 6);
@@ -33,7 +34,7 @@ public class KI extends Player {
 
 	}
 
-	public void turnNormal(Board board) {
+	private void turnNormal(Board board) {
 		
 		int pointCounter = 0;
 		int tempCounter;
@@ -66,7 +67,7 @@ public class KI extends Player {
 		board.turn(0, saveTurn);
 	}
 
-	public void turnHard(Board board) {
+	private void turnHard(Board board) {
 		int pointCounter = 0;
 		int tempCounter = 0; // Score f�r die Z�ge, ein geholter Stein gibt +1
 								// ein verlorender gibt -1
@@ -166,7 +167,7 @@ public class KI extends Player {
 		board.turn(0, saveTurn); // der richtige Zug wird ausgef�hrt
 	}
 
-	public int fakeTurn(Board board, int player, int spalte, int[][] boardArray) {
+	private int fakeTurn(Board board, int player, int spalte, int[][] boardArray) {
 		int points = 0;
 			
 		if (board.check(player, spalte)) {	//�berpr�ft auf m�glichkeit
@@ -196,7 +197,7 @@ public class KI extends Player {
 		return points;
 	}
 
-	public int fakeSteal(Board board, int player, int spalte, int[][] boardArray) {
+	private int fakeSteal(Board board, int player, int spalte, int[][] boardArray) {
 	
 		int tempPoints = 0;
 		if (player != board.getSpielerZug()) {	//darf nicht der aktive Spieler sein
