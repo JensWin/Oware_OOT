@@ -158,12 +158,12 @@ public class Board {
 
 			}
 			steal(tmpZeile, tmpSpalte);
-
+			spielerZug^=1;
 			if (noTurnPossible()) {
 				frame.gameEnde();
 			} else {
 
-				spielerZug ^= 1;
+//				spielerZug ^= 1;
 				if (spielerZug == 0) {
 					frame.setInfoP2(this.player[spielerZug ^ 1].getName() + " hat "
 							+ (this.player[spielerZug ^ 1].getSpielSteineSpieler() - tempPunkte) + " Steine geraubt");// Aktualisiert
