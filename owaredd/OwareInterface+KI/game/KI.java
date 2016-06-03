@@ -15,7 +15,6 @@ public class KI extends Player {
 	}
 
 	public void turn(Board board) {
-		board.frame.printButtonValues();
 		if (difficulty == 0) {
 			turnEasy(board);
 		} else if (difficulty == 1) {
@@ -55,14 +54,8 @@ public class KI extends Player {
 					boardArray[m][k] = board.board[m][k];
 				}
 			}
-
 			tempCounter += fakeTurn(board, 0, i, boardArray);
-			
-			System.out.println("Pointcounter: " + pointCounter);
-			System.out.println("tempcounter: " + tempCounter);
 			if (pointCounter == tempCounter) {
-			
-				
 				if (Math.random() < 0.5) { // Random bei gleichheit
 					if(board.check(0, i)){
 						pointCounter = tempCounter;
@@ -70,130 +63,71 @@ public class KI extends Player {
 						System.out.println("SaveTurn = "+ i);
 					}
 				}
-				
-				
 			} else if (pointCounter < tempCounter) {
 				saveTurn = i;
 				pointCounter = tempCounter;
 				System.out.println("SaveTurn = "+ i);
 			} 
 		}
-		
 		while(!board.check(0, saveTurn)){
 			saveTurn++;
 		}
 		if(board.check(0, saveTurn)){
-			
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("Mache Zug: " + saveTurn);
 			board.turn(0, saveTurn);
 		}
-		
 	}
 
 	private void turnHard(Board board) {
 		int pointCounter = 0;
-		int tempCounter = 0; // Score f�r die Z�ge, ein geholter Stein gibt +1
-								// ein verlorender gibt -1
-		int saveTurn=0; // am ende wir der Zug mit dem besten Score ausgef�hrt
+		int tempCounter = 0; //Score fuer die Zuege, ein geholter Stein gibt +1 ein verlorender gibt -1
+		int saveTurn=0; //am ende wir der Zug mit dem besten Score ausgef�hrt
 		int[][] boardArray1 = new int[2][6];
 		int[][] boardArray2 = new int[2][6];
 		int[][] boardArray3 = new int[2][6];
 
-		for (int i1 = 0; i1 < 6; i1++) { // alle m�glichkeiten f�r den ersten
-											// Zug
+		for (int i1 = 0; i1 < 6; i1++) { // alle moeglichkeiten fuer den ersten Zug
 			tempCounter =0;
 			if (board.check(0, i1)) {
 				tempCounter+=100;
-					
 					for (int m = 0; m < 2; m++) {
 						for (int k = 0; k < 6; k++) {
-							boardArray1[m][k] = board.board[m][k]; // Array wird
-																	// jedes
-																	// mal
-																	// zur�ck
-																	// gesetzt
+							boardArray1[m][k] = board.board[m][k]; //Array wird jedes/ mal zurueck gesetzt
 						}
 					}
+					tempCounter += fakeTurn(board, 0, i1, boardArray1); //addiert die gewonnenen Punkte
 
-					tempCounter += fakeTurn(board, 0, i1, boardArray1); // addiert
-																		// die
-																		// gewonnenen
-																		// Punkte
-
-					for (int i2 = 0; i2 < 6; i2++) { // alle m�glichkeiten f�r
-														// den
-														// zweiten Zug (Gegner)
+					for (int i2 = 0; i2 < 6; i2++) { //alle moeglichkeiten fuer den zweiten Zug (Gegner)
 
 						for (int m = 0; m < 2; m++) {
 							for (int k = 0; k < 6; k++) {
-								boardArray2[m][k] = boardArray1[m][k]; // Array
-																		// wird
-																		// jedes
-																		// mal
-																		// auf
-																		// das
-																		// array
-																		// zuvor
-																		// zur�ckgesetzt
+								boardArray2[m][k] = boardArray1[m][k]; //Array wird jedes mal auf das array zuvor zurueckgesetzt
 							}
 						}
-						tempCounter -= fakeTurn(board, 0, i1, boardArray2); // sub.
-																			// die
-																			// verlorenden
-																			// Punkte
+						tempCounter -= fakeTurn(board, 0, i1, boardArray2); //ub. die verlorenden Punkte
 
-						for (int i3 = 0; i3 < 6; i3++) { // alle m�glichkeiten
-															// f�r den
-															// dritten Zug
+						for (int i3 = 0; i3 < 6; i3++) { //alle moeglichkeiten fuer den dritten Zug
 
 							for (int m = 0; m < 2; m++) {
 								for (int k = 0; k < 6; k++) {
-									boardArray3[m][k] = boardArray2[m][k]; // Array
-																			// wird
-																			// jedes
-																			// mal
-																			// auf
-																			// das
-																			// array
-																			// zuvor
-																			// zur�ckgesetzt
+									boardArray3[m][k] = boardArray2[m][k]; //Array wird jedes mal auf das array zuvor zurueckgesetzt
 								}
 							}
-							tempCounter += fakeTurn(board, 0, i1, boardArray3); // addiert
-																				// die
-																				// gewonnenen
-																				// Punkte
+							tempCounter += fakeTurn(board, 0, i1, boardArray3); //addiert die gewonnenen Punkte
 
 							if (pointCounter == tempCounter) {
-								if (Math.random() < 0.5) { // Random true or
-															// false 50/50
-															// bei Gleichheit
+								if (Math.random() < 0.5) { //Random true or false 50/50 bei Gleichheit
 									pointCounter = tempCounter;
 									saveTurn = i1;
 								}
-							} else if (pointCounter < tempCounter) { // der
-																		// bessere
-																		// Zug
-																		// wird
-																		// gespeichert
+							} else if (pointCounter < tempCounter) { //der bessere Zug wird gespeichert
 								saveTurn = i1;
 								pointCounter = tempCounter;
 							}
-
 						}
-					
 				}
 			}
 		}
-	
-	
-		board.turn(0, saveTurn); // der richtige Zug wird ausgef�hrt
+		board.turn(0, saveTurn); //der richtige Zug wird ausgefuehrt
 	}
 
 	private int fakeTurn(Board board, int player, int spalte, int[][] boardArray) {

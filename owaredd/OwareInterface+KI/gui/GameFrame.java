@@ -143,7 +143,7 @@ public class GameFrame extends Application {
 	}
 	
 	public void setInfoWin(String s) {
-		infoLabelWin.setText(s);
+		infoLabelWin.setText("\n\n"+s);
 	}
 	
 	/**
@@ -216,7 +216,7 @@ public class GameFrame extends Application {
 
 		border.setCenter(grid);
 		border.setTop(menuBar);
-		Scene scene = new Scene(border, 800, 500);
+		Scene scene = new Scene(border, 1000, 800);
 		scene.getStylesheets().add("gui/Skin.css");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
@@ -292,7 +292,7 @@ public class GameFrame extends Application {
 		border.setCenter(grid);
 		border.setTop(menuBar);
 
-		Scene scene = new Scene(border, 800, 500);
+		Scene scene = new Scene(border, 1000, 800);
 		scene.getStylesheets().add("gui/Skin.css");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
@@ -388,7 +388,7 @@ public class GameFrame extends Application {
 		border.setCenter(grid);
 		border.setTop(menuBar);
 
-		Scene scene = new Scene(border, 800, 500);
+		Scene scene = new Scene(border, 1000, 800);
 		scene.getStylesheets().add("gui/Skin.css");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
@@ -430,7 +430,7 @@ public class GameFrame extends Application {
 		grid.setVgap(50);
 		grid.setAlignment(Pos.CENTER);
 
-		Scene scene = new Scene(grid, 800, 500);
+		Scene scene = new Scene(grid,1000, 800);
 		scene.getStylesheets().add("gui/Skin.css");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
@@ -445,6 +445,7 @@ public class GameFrame extends Application {
 		labelP2 = new Label(player2.getName() + ": " + player2.getSpielSteineSpieler());
 		infoLabelWin = new Label("");
 		
+		infoLabelWin.getStyleClass().add("labelWin");
 		gridTop.add(labelP1, 1, 0);
 		gridTop.add(labelP2, 1, 1);
 		gridTop.add(infoLabelWin, 1, 3);
@@ -472,8 +473,8 @@ public class GameFrame extends Application {
 		
 		//GridInfo
 		GridPane infoGrid = new GridPane();
-		infoLabelP1 = new Label("Hier kommen die Infos fuer Player1!");
-		infoLabelP2 = new Label("Hier kommen die Infos fuer Player2!");
+		infoLabelP1 = new Label("\t\tHier kommen die Infos fuer Player1!");
+		infoLabelP2 = new Label("\t\tHier kommen die Infos fuer Player2!");
 		
 		infoGrid.add(infoLabelP1, 0, 0);
 		infoGrid.add(infoLabelP2, 0, 1);
@@ -509,7 +510,7 @@ public class GameFrame extends Application {
 		master.setBottom(gridBottom);
 		king.setCenter(master);
 		king.setTop(menuBar);
-		Scene scene = new Scene(king, 800, 500);
+		Scene scene = new Scene(king, 1000, 800);
 		scene.getStylesheets().add("gui/Skin.css");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
@@ -567,7 +568,7 @@ public class GameFrame extends Application {
 		master.setCenter(grid);
 		master.setTop(menuBar);
 		king.setTop(master);
-		Scene scene = new Scene(king, 800, 500);
+		Scene scene = new Scene(king, 1000, 800);
 		scene.getStylesheets().add("gui/Skin.css");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);

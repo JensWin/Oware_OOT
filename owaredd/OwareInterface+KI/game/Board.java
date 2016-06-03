@@ -118,11 +118,8 @@ public class Board {
 			}
 
 		}
-		// System.out.println("gestohlen p1"+getPlayer1Score()+"
-		// p2"+getPlayer2Score());
 		frame.printPoints();
 		frame.printButtonValues();
-
 	}
 
 	/**
@@ -155,7 +152,6 @@ public class Board {
 					steinAnzahl--;
 
 				}
-
 			}
 			steal(tmpZeile, tmpSpalte);
 			spielerZug^=1;
@@ -163,9 +159,8 @@ public class Board {
 				frame.gameEnde();
 			} else {
 
-//				spielerZug ^= 1;
 				if (spielerZug == 0) {
-					frame.setInfoP2(this.player[spielerZug ^ 1].getName() + " hat "
+					frame.setInfoP2("\t\t"+this.player[spielerZug ^ 1].getName() + " hat "
 							+ (this.player[spielerZug ^ 1].getSpielSteineSpieler() - tempPunkte) + " Steine geraubt");// Aktualisiert
 																														// Text
 					frame.printButtonValues(); // Aktualisiert buttons
@@ -173,7 +168,7 @@ public class Board {
 					if (!winnerCheck()) // �berpr�ft ob gegner eine KI ist
 						checkKITurn();
 				} else {
-					frame.setInfoP1(this.player[spielerZug ^ 1].getName() + " hat "
+					frame.setInfoP1("\t\t"+this.player[spielerZug ^ 1].getName() + " hat "
 							+ (this.player[spielerZug ^ 1].getSpielSteineSpieler() - tempPunkte) + " Steine geraubt");// Aktualisiert
 																														// Text
 					frame.printButtonValues(); // Aktualisiert buttons
@@ -192,7 +187,6 @@ public class Board {
 	 */
 	public boolean winnerCheck() {
 		if (player[spielerZug ^ 1].getSpielSteineSpieler() > 24) {
-			//	frame.setInfoWin(player[spielerZug].getName() + " gewinnt!");
 				frame.gameEnde();
 				return true;
 		} else

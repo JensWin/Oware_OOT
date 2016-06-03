@@ -3,7 +3,7 @@
 .root {
     -fx-background-image: url("Background.jpg");
      -fx-background-repeat: stretch;   
-    -fx-background-size: 800 500;
+    -fx-background-size: 1000 800;
     -fx-background-position: center center;
 }
 //Allgemeines Label
@@ -21,6 +21,13 @@
     -fx-opacity: 1;
 }
 
+//Label für Gewinner
+.labelWin{
+	-fx-font-size: 30pt;
+    -fx-font-family: Impact, Charcoal, sans-serif;
+    -fx-text-fill:#ff8000;
+    -fx-opacity: 1;
+}
 //MenuBar
 .menu-bar {
     -fx-background-color: derive(#1d1d1d,20%);
