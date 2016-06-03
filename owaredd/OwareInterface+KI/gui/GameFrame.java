@@ -163,7 +163,8 @@ public class GameFrame extends Application {
 		for (Button b : buttons[1]) {
 			b.setDisable(true);
 		}
-
+		
+		endButton.setDisable(true);
 		if (board.winningPlayer() == null) {
 			setInfoWin("Unentschieden");
 		} else
@@ -198,21 +199,18 @@ public class GameFrame extends Application {
 		// Menübar
 		MenuBar menuBar = new MenuBar();
 
-		Menu menuRestart = new Menu("Restart");
 		Menu menuHelp = new Menu("Help");
 
-		MenuItem CompleteMenuItem = new MenuItem("Complete");
 		MenuItem anleitung = new MenuItem("Anleitung");
 		MenuItem credits = new MenuItem("Credits");
-
-		CompleteMenuItem.setOnAction(actionEvent -> restart(primaryStage));
+		
 		anleitung.setOnAction(actionEvent -> anleitung(primaryStage));
 		credits.setOnAction(actionEvent -> showCredits(primaryStage));
 
-		menuRestart.getItems().addAll(CompleteMenuItem);
+		
 		menuHelp.getItems().addAll(anleitung, credits);
 
-		menuBar.getMenus().addAll(menuRestart, menuHelp);
+		menuBar.getMenus().addAll(menuHelp);
 
 		// Menübar ende
 
@@ -248,12 +246,12 @@ public class GameFrame extends Application {
 		// Menübar
 		MenuBar menuBar = new MenuBar();
 
-		Menu menuRestart = new Menu("Restart");
+		
 		Menu menuHelp = new Menu("Help");
 		Menu menuBack = new Menu("Back");
 		Menu menuStart = new Menu("Start Game");
 		
-		MenuItem CompleteMenuItem = new MenuItem("Complete");
+		
 		MenuItem anleitung = new MenuItem("Anleitung");
 		MenuItem credits = new MenuItem("Credits");
 		MenuItem back = new MenuItem("<= Back");
@@ -280,15 +278,14 @@ public class GameFrame extends Application {
 		});
 		
 		
-		CompleteMenuItem.setOnAction(actionEvent -> restart(primaryStage));
+		
 		anleitung.setOnAction(actionEvent -> anleitung(primaryStage));
 		credits.setOnAction(actionEvent -> showCredits(primaryStage));
 
-		menuRestart.getItems().addAll(CompleteMenuItem);
 		menuHelp.getItems().addAll(anleitung, credits);
 		menuBack.getItems().addAll(back);
 		menuStart.getItems().addAll(start);
-		menuBar.getMenus().addAll(menuBack,menuStart, menuRestart, menuHelp);
+		menuBar.getMenus().addAll(menuBack,menuStart, menuHelp);
 
 		// Menübar ende
 		
@@ -342,12 +339,10 @@ public class GameFrame extends Application {
 		// Menübar
 		MenuBar menuBar = new MenuBar();
 
-		Menu menuRestart = new Menu("Restart");
 		Menu menuHelp = new Menu("Help");
 		Menu menuBack = new Menu("Back");
 		Menu menuStart = new Menu("Start Game");
-		
-		MenuItem CompleteMenuItem = new MenuItem("Complete");
+
 		MenuItem anleitung = new MenuItem("Anleitung");
 		MenuItem credits = new MenuItem("Credits");
 		MenuItem back = new MenuItem("<= Back");
@@ -378,15 +373,15 @@ public class GameFrame extends Application {
 		});
 		
 		
-		CompleteMenuItem.setOnAction(actionEvent -> restart(primaryStage));
+		
 		anleitung.setOnAction(actionEvent -> anleitung(primaryStage));
 		credits.setOnAction(actionEvent -> showCredits(primaryStage));
 
-		menuRestart.getItems().addAll(CompleteMenuItem);
+
 		menuHelp.getItems().addAll(anleitung, credits);
 		menuBack.getItems().addAll(back);
 		menuStart.getItems().addAll(start);
-		menuBar.getMenus().addAll(menuBack,menuStart, menuRestart, menuHelp);
+		menuBar.getMenus().addAll(menuBack,menuStart, menuHelp);
 
 		// Menübar ende
 
