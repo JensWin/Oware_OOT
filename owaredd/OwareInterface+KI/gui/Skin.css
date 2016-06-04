@@ -1,9 +1,10 @@
 
-//Hintergrundbild
+//Hintergrundbild  
 .root {
-    -fx-background-image: url("Background.jpg");
-     -fx-background-repeat: stretch;   
+   	-fx-background-image: url("Background.jpg");
+    -fx-background-repeat: stretch;   
     -fx-background-size: 1000 800;
+    -fx-background-color: black;
     -fx-background-position: center center;
 }
 //Allgemeines Label
@@ -13,9 +14,9 @@
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
-//Label bei Creditsüberschriften
+//Label bei Creditsüberschriften #ff8000
 .labelProg{
-	 -fx-font-size: 10pt;
+	 -fx-font-size: 13pt;
     -fx-font-family: "arial black";
     -fx-text-fill:#ff8000;
     -fx-opacity: 1;
@@ -46,7 +47,17 @@
     -fx-opacity: 0.9;
 }
 
+//ToolBar
+.tool-bar {
+    -fx-background-color: derive(#1d1d1d,20%);
+}
 
+.buttonBack2{
+	-fx-padding: 8 8 8 8;
+	-fx-background-color: white;
+	-fx-font-family: "Arial black", Helvetica, Arial, sans-serif;
+	 -fx-font-size: 4pt;
+}
 //StandardButton
 .button {
     -fx-padding: 50 50 50 50;   
@@ -63,8 +74,8 @@
 .buttonSpiel{
     -fx-background-color: 
         #000000,
-        linear-gradient(#7ebcea, #2f4b8f),
-        linear-gradient(#426ab7, #263e75),
+        linear-gradient(#8ebcea, #2f4b8f),
+        linear-gradient(#456ab7, #263e75),
         linear-gradient(#395cab, #223768);
     -fx-background-insets: 0,1,2,3;
     -fx-background-radius: 3,2,2,2;

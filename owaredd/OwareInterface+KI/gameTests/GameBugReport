@@ -43,10 +43,23 @@ Im Spiel
 GameDesign 
 	
 	- Der Back-Button und der Restart-Button, wenn man Anleitung anklickt, tun beide das selbe. Restart-Button sollte gelöscht werden. 
-	Back-Button hat unnötiges Dropdown mit einem weiteren Button, welcher das tut was der Back-Button tun sollte.
+		Back-Button hat unnötiges Dropdown mit einem weiteren Button, welcher das tut was der Back-Button tun sollte.
 	
-	- Anleitung sollte eine andere Farbe haben, sowie eine größere Schrift und vielleicht zentriert sein.
+		-- Restart aus Anleitung entfernt. Back in Anleitung geändert, sieht noch komisch aus, wird noch verbessert, wenn Fehlerstelle gefunden.
+			Danach wirds evtl. überall eingebaut
 	
 	- Start Game Button bei vsKI und vsPlayer sollte eher im Feld sein als oben rechts und auch keinen unnötigen Dropdown-Button.
+		
+		-- War eigtl nur zu Testzwecken, vergessen wieder umzustellen. Jetzt wieder im Feld.
+		
+	- Anleitung sollte eine andere Farbe haben, sowie eine größere Schrift und vielleicht zentriert sein.
+	- Ändern wir das Hintergrundbild noch? Falls nicht sollten wir eine andere Farbe als Orange nehmen
 	
-	- Ändern wird das Hintergrundbild noch? Falls nicht sollten wir eine andere Farbe als Orange nehmen
+	
+	
+	
+	
+	
+	
+	
+	
