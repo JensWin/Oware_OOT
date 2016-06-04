@@ -39,3 +39,14 @@ Im Spiel
 	- Spiel beendet sich manchmal nicht richtig
 	
 		-- Scheint zu gehen. 
+		
+GameDesign 
+	
+	- Der Back-Button und der Restart-Button, wenn man Anleitung anklickt, tun beide das selbe. Restart-Button sollte gelöscht werden. 
+	Back-Button hat unnötiges Dropdown mit einem weiteren Button, welcher das tut was der Back-Button tun sollte.
+	
+	- Anleitung sollte eine andere Farbe haben, sowie eine größere Schrift und vielleicht zentriert sein.
+	
+	- Start Game Button bei vsKI und vsPlayer sollte eher im Feld sein als oben rechts und auch keinen unnötigen Dropdown-Button.
+	
+	- Ändern wird das Hintergrundbild noch? Falls nicht sollten wir eine andere Farbe als Orange nehmen
