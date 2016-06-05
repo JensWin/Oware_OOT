@@ -15,7 +15,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.ToolBar;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
