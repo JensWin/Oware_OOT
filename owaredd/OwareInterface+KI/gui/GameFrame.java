@@ -31,7 +31,6 @@ public class GameFrame extends Application {
 	private Label labelP2;
 	private Label infoLabelP1;
 	private Label infoLabelP2;
-	private Label infoLabelWin;
 	private Button endButton;
 
 	public static void main(String[] args) {
@@ -59,7 +58,6 @@ public class GameFrame extends Application {
 			buttons[0][i].setVisible(true);
 			buttons[0][i].setPadding(new Insets(50, 50, 50, 50));
 			p++;
-			buttons[0][i].getStyleClass().add("buttonSpiel");
 		}
 		// Reihe des unteren Spielers
 		for (int i = 0; i < board.board[1].length; i++) {
@@ -67,7 +65,6 @@ public class GameFrame extends Application {
 			gridButtons.add(buttons[1][i], i, 10);
 			buttons[1][i].setVisible(true);
 			buttons[1][i].setPadding(new Insets(50, 50, 50, 50));
-			buttons[1][i].getStyleClass().add("buttonSpiel");
 		}
 
 		/*
@@ -143,10 +140,6 @@ public class GameFrame extends Application {
 		infoLabelP2.setText(s);
 	}
 	
-	public void setInfoWin(String s) {
-		infoLabelWin.setText("\n\n"+s);
-	}
-	
 	/**
 	 * gameEnde() Wenn Spiel zuende ist, müssen alle Buttons disabled werden und
 	 * der Gewinner bzw unentschieden ausgegeben werden
@@ -167,10 +160,12 @@ public class GameFrame extends Application {
 		
 		endButton.setDisable(true);
 		if (board.winningPlayer() == null) {
-			setInfoWin("Unentschieden");
-		} else
-			setInfoWin(board.winningPlayer().getName() + " gewinnt");
-
+			setInfoP1("\t\t"+"Unentschieden");
+			setInfoP2("");
+		} else{
+			setInfoP1("\t\t"+board.winningPlayer().getName() + " gewinnt");
+			setInfoP2("");
+		}
 	}
 
 	public void vsChoice(Stage primaryStage) {
@@ -179,13 +174,11 @@ public class GameFrame extends Application {
 		BorderPane border = new BorderPane();
 
 		Button vsPlayerB = new Button("vsPlayer");
-		vsPlayerB.getStyleClass().add("buttonAuswahl");
 		vsPlayerB.setOnAction((ActionEvent e) -> {
 			vsPlayer(primaryStage);
 		});
 
-		Button vsKIB = new Button("vsKI");
-		vsKIB.getStyleClass().add("buttonAuswahl");
+		Button vsKIB = new Button("   vsKI   ");
 		vsKIB.setOnAction((ActionEvent e) -> {
 			vsKI(primaryStage);
 		});
@@ -254,7 +247,6 @@ public class GameFrame extends Application {
 			Game(board, primaryStage);
 		});
 		
-		start.getStyleClass().add("buttonAuswahl");
 		grid.add(labelP1, 0, 0);
 		grid.add(labelP2, 0, 1);
 		grid.add(name1Field, 1, 0);
@@ -329,7 +321,6 @@ public class GameFrame extends Application {
 		rb3.getStyleClass().add("buttonKI");
 	
 		Button start = new Button("Start Game!");
-		start.getStyleClass().add("buttonAuswahl");
 		start.setOnAction((ActionEvent e) -> {
 			if (nameField.getText().isEmpty() || nameField.getText().length() > 20) {
 				this.player2 = new Player("Player 2");
@@ -403,6 +394,7 @@ public class GameFrame extends Application {
 
 		primaryStage.setTitle("Credits");
 
+		BorderPane king = new BorderPane();
 		GridPane grid = new GridPane();
 		Label teamLeader = new Label("Team-Leiter:\nFabian Laier");
 		Label designer = new Label("Designer:\nDominique Bost\nMelissa Zindl\nMandy Schmitt");
@@ -428,12 +420,12 @@ public class GameFrame extends Application {
 			vsChoice(primaryStage);
 		});
 
-		grid.add(back, 1, 2);
 		grid.setHgap(50);
 		grid.setVgap(50);
 		grid.setAlignment(Pos.CENTER);
-
-		Scene scene = new Scene(grid,1000, 800);
+		king.setCenter(grid);
+		king.setBottom(back);
+		Scene scene = new Scene(king,1000, 800);
 		scene.getStylesheets().add("gui/Skin.css");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
@@ -446,12 +438,11 @@ public class GameFrame extends Application {
 		GridPane gridTop = new GridPane();
 		labelP1 = new Label(player1.getName() + ": " + player1.getSpielSteineSpieler());
 		labelP2 = new Label(player2.getName() + ": " + player2.getSpielSteineSpieler());
-		infoLabelWin = new Label("");
 		
-		infoLabelWin.getStyleClass().add("labelWin");
+		
+		
 		gridTop.add(labelP1, 1, 0);
 		gridTop.add(labelP2, 1, 1);
-		gridTop.add(infoLabelWin, 1, 3);
 		gridTop.setAlignment(Pos.CENTER);
 
 		// Middle
@@ -464,7 +455,7 @@ public class GameFrame extends Application {
 		GridPane gridBottom = new GridPane();
 		// gridBottom.setHgap(100);
 		
-		endButton = new Button("Ende");
+		endButton = new Button("End");
 		endButton.getStyleClass().add("buttonEnde");
 
 		endButton.setOnAction((ActionEvent e) -> {
@@ -536,44 +527,15 @@ public class GameFrame extends Application {
 		Schritt1.getStyleClass().add("labelProg");
 
 		grid.add(Schritt1, 0, 0);
-
-		// Menübar
-		/*MenuBar menuBar = new MenuBar();
-
-	
-		Menu menuHelp = new Menu("Help");
-		Menu menuBack = new Menu("Back");
-		
-		
-		MenuItem anleitung = new MenuItem("Anleitung");
-		MenuItem credits = new MenuItem("Credits");
-		MenuItem back = new MenuItem("<= Back");
-		back.setOnAction((ActionEvent e) -> {
-			vsChoice(primaryStage);
-		});
-		
-		
-		anleitung.setOnAction(actionEvent -> anleitung(primaryStage));
-		credits.setOnAction(actionEvent -> showCredits(primaryStage));
-
-		
-		menuHelp.getItems().addAll(anleitung, credits);
-		menuBack.getItems().addAll(back);
-
-		menuBar.getMenus().addAll(menuBack,  menuHelp);
-*/
-		// Menübar ende
-
 		
 		//Toolbar
 		
-		ToolBar tool = new ToolBar();
 		Button back = new Button("Back");
 		back.setOnAction((ActionEvent e) -> {
 			vsChoice(primaryStage);
 		});
 		back.getStyleClass().add("buttonBack2");
-		tool.getItems().addAll(back);
+		
 		//Toolbar
 		
 		grid.setHgap(50);
@@ -581,7 +543,7 @@ public class GameFrame extends Application {
 		grid.setAlignment(Pos.CENTER);
 		
 		master.setCenter(grid);
-		master.setTop(tool);
+		king.setBottom(back);
 		king.setTop(master);
 		Scene scene = new Scene(king, 1000, 800);
 		scene.getStylesheets().add("gui/Skin.css");
