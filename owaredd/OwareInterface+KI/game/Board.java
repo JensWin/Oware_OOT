@@ -180,6 +180,7 @@ public class Board {
 		}
 	}
 
+	
 	/**
 	 * winnerCheck() Ueberprueft ob ein Gewinner bereits feststeht
 	 * 
