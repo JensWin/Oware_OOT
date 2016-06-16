@@ -7,6 +7,8 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
+import org.junit.After;
+
 public class PlayerTest
 {
     Player playerNameTests;
@@ -24,6 +26,15 @@ public class PlayerTest
 
         Player player2 = new Player("toStringTester");
         this.playerToString = player2;
+    }
+    
+    @After
+    public void teardown() throws Exception
+    {
+    	
+    	this.playerNameTests = null;
+    	this.playerSpielsteineTests  = null;
+    	this.playerToString = null;    	
     }
 
     @Test
@@ -53,10 +64,6 @@ public class PlayerTest
     public void testGetNameEmpty() throws Exception
     {
         Player player = new Player(null);
-        /**
-         //TODO NullPointerException im Namen --> siehe folgende Tests leeres Namensfeld erlaubt?
-         * Darf der Playername == Null sein? NullpointerException
-         */
         assertThat(player.getName(), null);
 
     }
@@ -64,9 +71,9 @@ public class PlayerTest
     @Test
     public void testGetNameEmptyButNotNull() throws Exception
     {
-        Player player = new Player("");
-        assertEquals(player.getName(), "");
-        assertTrue(player.getName().equals(""));
+        this.playerNameTests.setName("");
+        assertEquals(playerNameTests.getName(), "");
+        assertTrue(playerNameTests.getName().equals(""));
     }
 
     /**
@@ -94,7 +101,7 @@ public class PlayerTest
     @Test
     public void testSetSpielsteineLess0() throws Exception
     {
-        //TODO Spielsteine sollten nicht kleiner 0 sein
+
         playerSpielsteineTests.setSpielSteineSpieler(-5);
         assertThat(playerSpielsteineTests.getSpielSteineSpieler(), is(-5));
         assertTrue(playerSpielsteineTests.getSpielSteineSpieler() == -5);
@@ -104,7 +111,6 @@ public class PlayerTest
     @Test
     public void testSetSpielsteineTooBigNumber() throws Exception
     {
-        //TODO Obere Schranke fuer Spielsteine?
         playerSpielsteineTests.setSpielSteineSpieler(9999);
         assertThat(playerSpielsteineTests.getSpielSteineSpieler(), is(9999));
         assertTrue(playerSpielsteineTests.getSpielSteineSpieler() == 9999);
@@ -140,18 +146,18 @@ public class PlayerTest
     }
 
     /**
-     * Vollständige Runden Simulation
+     * Vollstaendige Runden Simulation
      */
 
     @Test
     public void GameSimulationTest() throws Exception
     {
-        Player player = new Player("TestyTest");
-        assertThat(player.getName(), is("TestyTest"));
-        assertTrue(player.getName().equals("TestyTest"));
-        assertFalse(!player.getName().equals("TestyTest"));
+        this.playerNameTests.setName("TestyTest");
+        assertThat(playerNameTests.getName(), is("TestyTest"));
+        assertTrue(playerNameTests.getName().equals("TestyTest"));
+        assertFalse(!playerNameTests.getName().equals("TestyTest"));
 
-        player.setName("TestyBoy");
+        Player player = new Player("TestyBoy");
         assertThat(player.getName(), is("TestyBoy"));
         assertTrue(player.getName().equals("TestyBoy"));
         assertFalse(!player.getName().equals("TestyBoy"));
@@ -182,10 +188,10 @@ public class PlayerTest
     @Test
     public void getKiTest() throws Exception
     {
-        Player player = new Player("BinKeineKI");
-        assertThat(player.getKI(), is(false));
-        assertTrue(player.getKI() == false);
-        assertFalse(player.getKI() != false);
+        this.playerNameTests.setName("Bin ich eine KI?");
+        assertThat(playerNameTests.getKI(), is(false));
+        assertTrue(playerNameTests.getKI() == false);
+        assertFalse(playerNameTests.getKI() != false);
     }
 
     /**
@@ -214,10 +220,10 @@ public class PlayerTest
     @Test
     public void toStringTestSigns() throws Exception
     {
-        playerToString.setName("toStringTäster!#");
-        assertThat(playerToString.toString(), is("toStringTäster!#: 0"));
-        assertTrue(playerToString.toString().equals("toStringTäster!#: 0"));
-        assertFalse(!playerToString.toString().equals("toStringTäster!#: 0"));
+        playerToString.setName("toStringTï¿½ster!#");
+        assertThat(playerToString.toString(), is("toStringTï¿½ster!#: 0"));
+        assertTrue(playerToString.toString().equals("toStringTï¿½ster!#: 0"));
+        assertFalse(!playerToString.toString().equals("toStringTï¿½ster!#: 0"));
     }
 
 
