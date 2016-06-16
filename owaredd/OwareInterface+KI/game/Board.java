@@ -24,7 +24,7 @@ public class Board {
 
 	/**
 	 * Konstruktor fuer ComputerSpiel
-	 * 
+	 *
 	 * @param player1
 	 * @param player2
 	 * @param frame
@@ -53,7 +53,7 @@ public class Board {
 
 	/**
 	 * check() ueberprueft ob ein der Zug gueltig ist
-	 * 
+	 *
 	 * @param player
 	 * @param spalte
 	 * @return
@@ -63,13 +63,13 @@ public class Board {
 		boolean forceTurn = true;
 
 		if (player != spielerZug) { // �bergebener Spieler ungleich dem
-									// aktuellen spielerZug
+			// aktuellen spielerZug
 			return false;
 		}
 
 		for (int i : board[spielerZug ^ 1]) { // schaut auf Gegnerseite ob ein
-												// Feld != 0 ist, falls ja ist
-												// kein forceTurn notwendig
+			// Feld != 0 ist, falls ja ist
+			// kein forceTurn notwendig
 			if (i != 0) {
 				forceTurn = false;
 				break;
@@ -102,7 +102,7 @@ public class Board {
 	/**
 	 * steal() Sammelt Steine ein und fuegt sie zum Punktekontos des Spieler
 	 * hinzu
-	 * 
+	 *
 	 * @param player
 	 * @param spalte
 	 */
@@ -124,7 +124,7 @@ public class Board {
 
 	/**
 	 * turn() Zum Zug ausfuehren
-	 * 
+	 *
 	 * @param player
 	 * @param spalte
 	 */
@@ -162,41 +162,42 @@ public class Board {
 				if (spielerZug == 0) {
 					frame.setInfoP2("\t\t"+this.player[spielerZug ^ 1].getName() + " hat "
 							+ (this.player[spielerZug ^ 1].getSpielSteineSpieler() - tempPunkte) + " Steine geraubt");// Aktualisiert
-																														// Text
+					// Text
 					frame.printButtonValues(); // Aktualisiert buttons
 
-					if (!winnerCheck()) // �berpr�ft ob gegner eine KI ist
-						checkKITurn();
+					if (!winnerCheck() && checkKITurn()) // �berpr�ft ob gegner eine KI ist
+						frame.toogleKIButton();
 				} else {
 					frame.setInfoP1("\t\t"+this.player[spielerZug ^ 1].getName() + " hat "
 							+ (this.player[spielerZug ^ 1].getSpielSteineSpieler() - tempPunkte) + " Steine geraubt");// Aktualisiert
-																														// Text
+					// Text
 					frame.printButtonValues(); // Aktualisiert buttons
 
-					if (!winnerCheck()) // �berpr�ft ob gegner eine KI ist
-						checkKITurn();
+					if (!winnerCheck() && checkKITurn()) { // �berpr�ft ob gegner eine KI ist
+						frame.toogleKIButton();
+					}
 				}
 			}
 		}
 	}
 
-	
+
 	/**
 	 * winnerCheck() Ueberprueft ob ein Gewinner bereits feststeht
-	 * 
+	 *
 	 * @return true / false
 	 */
 	public boolean winnerCheck() {
 		if (player[spielerZug ^ 1].getSpielSteineSpieler() > 24) {
-				frame.gameEnde();
-				return true;
+			frame.gameEnde();
+			return true;
 		} else
 			return false;
 	}
 
 	/**
 	 * winningPlayer() Gibt den Gewinner zurueck
-	 * 
+	 *
 	 * @return
 	 */
 	public Player winningPlayer() {
@@ -211,10 +212,11 @@ public class Board {
 	/**
 	 * checkKIturn() Prueft ob der naechste Zug ein Computerzug ist
 	 */
-	public void checkKITurn() {
+	public boolean checkKITurn() {
 		if (this.player[spielerZug].getKI()) {
-			ki.turn(this);
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -231,7 +233,7 @@ public class Board {
 
 	/**
 	 * noTurnPossible() Stellt fest ob kein Zug mehr moeglich ist
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean noTurnPossible() {
@@ -256,12 +258,12 @@ public class Board {
 		String s = "";
 
 		for (int j = board[0].length - 1; j >= 0; j--) { // Durchlaeuft das
-															// Brett rueckwaertz
+			// Brett rueckwaertz
 			s = s + "[" + board[0][j] + "]";
 		}
 		s = s + "\n"; // Zeilenumbruch
 		for (int j = 0; j < board[1].length; j++) { // Durchlaeuft das Brett
-													// vorwaertz
+			// vorwaertz
 			s = s + "[" + board[1][j] + "]";
 		}
 		return s;

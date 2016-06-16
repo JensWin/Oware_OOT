@@ -31,6 +31,7 @@ public class GameFrame extends Application {
 	private Label infoLabelP1;
 	private Label infoLabelP2;
 	private Button endButton;
+	private Button turnKIButton;
 
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -43,12 +44,12 @@ public class GameFrame extends Application {
 
 	/**
 	 * initializeButtons() Inititalisiert die einzelnen Buttons
-	 * 
+	 *
 	 * @param buttons
 	 */
 	public void initializeButtons(Button[][] buttons) {
 		/*
-		 * Die Reihe des oberen Spielers muss rückwärts ausgegeben werden
+		 * Die Reihe des oberen Spielers muss rï¿½ckwï¿½rts ausgegeben werden
 		 */
 		int p = 0;
 		for (int i = board.board[0].length - 1; i >= 0; i--) {
@@ -87,6 +88,14 @@ public class GameFrame extends Application {
 
 		}
 
+		turnKIButton = new Button("KI");
+		turnKIButton.setVisible(false);
+		turnKIButton.setOnAction( e -> {
+			((KI)player1).turn(board);
+			turnKIButton.setDisable(true);
+		});
+		//TODO Button Location
+		gridButtons.add(turnKIButton,2,0);
 		printButtonValues();
 	}
 
@@ -96,16 +105,18 @@ public class GameFrame extends Application {
 	public void printButtonValues() {
 		for (int j = 0; j < 2; j++) {
 			for (int i = 0; i < 6; i++) {
-				if (board.board[j][i] < 10) { // Für gutes Aussehen, wenn die
-												// Zahl kleiner 10 ist werden 2
-												// Leerzeichen
+				if (board.board[j][i] < 10) { // Fï¿½r gutes Aussehen, wenn die
+					// Zahl kleiner 10 ist werden 2
+					// Leerzeichen
 					buttons[j][i].setText("  " + board.board[j][i]); // vor die
-																		// Zahl
-																		// gesetzt.
+					// Zahl
+					// gesetzt.
 				} else
 					buttons[j][i].setText(board.board[j][i] + "");
 
-				if (board.check(j, i)) { // Buttons werden disabled
+				if(board.checkKITurn()){ //Wenn KI am zug keine eingabe moeglich
+					buttons[j][i].setDisable(true);
+				} else if (board.check(j, i)) { // Buttons werden disabled
 					buttons[j][i].setDisable(false);
 				} else {
 					buttons[j][i].setDisable(true);
@@ -124,23 +135,23 @@ public class GameFrame extends Application {
 
 	/**
 	 * setInfo() InfoLabel wird beschrieben
-	 * 
+	 *
 	 * @param s
 	 */
 	public void setInfoP1(String s) {
 		infoLabelP1.setText(s);
 	}
-	
-	 /** setInfo() InfoLabel wird beschrieben
-	 * 
+
+	/** setInfo() InfoLabel wird beschrieben
+	 *
 	 * @param s
 	 */
 	public void setInfoP2(String s) {
 		infoLabelP2.setText(s);
 	}
-	
+
 	/**
-	 * gameEnde() Wenn Spiel zuende ist, müssen alle Buttons disabled werden und
+	 * gameEnde() Wenn Spiel zuende ist, mï¿½ssen alle Buttons disabled werden und
 	 * der Gewinner bzw unentschieden ausgegeben werden
 	 */
 	public void gameEnde() {
@@ -156,7 +167,7 @@ public class GameFrame extends Application {
 		for (Button b : buttons[1]) {
 			b.setDisable(true);
 		}
-		
+
 		endButton.setDisable(true);
 		if (board.winningPlayer() == null) {
 			setInfoP1("\t\t"+"Unentschieden");
@@ -189,23 +200,23 @@ public class GameFrame extends Application {
 		grid.setAlignment(Pos.CENTER);
 		grid.setHgap(100);
 		grid.setVgap(50);
-		// Menübar
+		// Menï¿½bar
 		MenuBar menuBar = new MenuBar();
 
 		Menu menuHelp = new Menu("Help");
 
 		MenuItem anleitung = new MenuItem("Anleitung");
 		MenuItem credits = new MenuItem("Credits");
-		
+
 		anleitung.setOnAction(actionEvent -> anleitung(primaryStage));
 		credits.setOnAction(actionEvent -> showCredits(primaryStage));
 
-		
+
 		menuHelp.getItems().addAll(anleitung, credits);
 
 		menuBar.getMenus().addAll(menuHelp);
 
-		// Menübar ende
+		// Menï¿½bar ende
 
 		border.setCenter(grid);
 		border.setTop(menuBar);
@@ -228,7 +239,7 @@ public class GameFrame extends Application {
 		labelP1 = new Label("Name Spieler 1:\n(Max. 20 Zeichen)");
 		labelP2 = new Label("Name Spieler 2:\n(Max. 20 Zeichen)");
 
-		
+
 		Button start = new Button("Start Game!");
 		start.setOnAction((ActionEvent e) -> {
 			if (name1Field.getText().isEmpty() || name1Field.getText().length() > 20) {
@@ -245,7 +256,7 @@ public class GameFrame extends Application {
 			board = new Board(player1, player2, this);
 			Game(board, primaryStage);
 		});
-		
+
 		grid.add(labelP1, 0, 0);
 		grid.add(labelP2, 0, 1);
 		grid.add(name1Field, 1, 0);
@@ -255,34 +266,34 @@ public class GameFrame extends Application {
 		grid.setVgap(50);
 		grid.setAlignment(Pos.CENTER);
 
-		// Menübar
+		// Menï¿½bar
 		MenuBar menuBar = new MenuBar();
 
-		
+
 		Menu menuHelp = new Menu("Help");
 		Menu menuBack = new Menu("Back");
-		
+
 		MenuItem anleitung = new MenuItem("Anleitung");
 		MenuItem credits = new MenuItem("Credits");
 		MenuItem back = new MenuItem("<= Back");
-		
-			
+
+
 		back.setOnAction((ActionEvent e) -> {
 			vsChoice(primaryStage);
 		});
-		
-		
-		
+
+
+
 		anleitung.setOnAction(actionEvent -> anleitung(primaryStage));
 		credits.setOnAction(actionEvent -> showCredits(primaryStage));
 
 		menuHelp.getItems().addAll(anleitung, credits);
 		menuBack.getItems().addAll(back);
-		
+
 		menuBar.getMenus().addAll(menuBack, menuHelp);
 
-		// Menübar ende
-		
+		// Menï¿½bar ende
+
 		border.setCenter(grid);
 		border.setTop(menuBar);
 
@@ -314,11 +325,11 @@ public class GameFrame extends Application {
 		rb3.setToggleGroup(group);
 
 		rb1.setSelected(true);
-		
+
 		rb1.getStyleClass().add("buttonKI");
 		rb2.getStyleClass().add("buttonKI");
 		rb3.getStyleClass().add("buttonKI");
-	
+
 		Button start = new Button("Start Game!");
 		start.setOnAction((ActionEvent e) -> {
 			if (nameField.getText().isEmpty() || nameField.getText().length() > 20) {
@@ -338,8 +349,9 @@ public class GameFrame extends Application {
 			this.player1 = ki;
 			board = new Board(ki, player2, this);
 			Game(board, primaryStage);
+			turnKIButton.setVisible(true);
 		});
-		
+
 		grid.add(labelP, 0, 0);
 		grid.add(nameField, 1, 0);
 		gridChoice.add(rb1, 0, 0);
@@ -352,31 +364,31 @@ public class GameFrame extends Application {
 		grid.setVgap(50);
 		grid.setAlignment(Pos.CENTER);
 
-		// Menübar
+		// Menï¿½bar
 		MenuBar menuBar = new MenuBar();
 
 		Menu menuHelp = new Menu("Help");
 		Menu menuBack = new Menu("Back");
-		
+
 
 		MenuItem anleitung = new MenuItem("Anleitung");
 		MenuItem credits = new MenuItem("Credits");
 		MenuItem back = new MenuItem("<= Back");
-			
+
 		back.setOnAction((ActionEvent e) -> {
 			vsChoice(primaryStage);
 		});
-		
+
 		anleitung.setOnAction(actionEvent -> anleitung(primaryStage));
 		credits.setOnAction(actionEvent -> showCredits(primaryStage));
 
 
 		menuHelp.getItems().addAll(anleitung, credits);
 		menuBack.getItems().addAll(back);
-		
+
 		menuBar.getMenus().addAll(menuBack, menuHelp);
 
-		// Menübar ende
+		// Menï¿½bar ende
 
 		border.setCenter(grid);
 		border.setTop(menuBar);
@@ -397,7 +409,7 @@ public class GameFrame extends Application {
 		GridPane grid = new GridPane();
 		Label teamLeader = new Label("Team-Leiter:\nFabian Laier");
 		Label designer = new Label("Designer:\nDominique Bost\nMelissa Zindl\nMandy Schmitt");
-		Label programmierer = new Label("Programmierer:\nJens Windisch\nJan Spliethoff\nMarkus Cöllen");
+		Label programmierer = new Label("Programmierer:\nJens Windisch\nJan Spliethoff\nMarkus Cï¿½llen");
 		Label tester = new Label("Tester:\nJennifer Brenner\nPatrick Hentschel\nSebastian Schuler");
 		Label extras = new Label("Extras:\nPaint-SkillzZz\nby Markus & Jens");
 
@@ -437,9 +449,9 @@ public class GameFrame extends Application {
 		GridPane gridTop = new GridPane();
 		labelP1 = new Label(player1.getName() + ": " + player1.getSpielSteineSpieler());
 		labelP2 = new Label(player2.getName() + ": " + player2.getSpielSteineSpieler());
-		
-		
-		
+
+
+
 		gridTop.add(labelP1, 1, 0);
 		gridTop.add(labelP2, 1, 1);
 		gridTop.setAlignment(Pos.CENTER);
@@ -453,7 +465,7 @@ public class GameFrame extends Application {
 		// GridBottom
 		GridPane gridBottom = new GridPane();
 		// gridBottom.setHgap(100);
-		
+
 		endButton = new Button("End");
 		endButton.getStyleClass().add("buttonEnde");
 
@@ -462,18 +474,18 @@ public class GameFrame extends Application {
 		});
 
 		gridBottom.add(endButton, 0, 0);
-		
-		
+
+
 		//GridInfo
 		GridPane infoGrid = new GridPane();
 		infoLabelP1 = new Label("\t\tHier kommen die Infos fuer Player1!");
 		infoLabelP2 = new Label("\t\tHier kommen die Infos fuer Player2!");
-		
+
 		infoGrid.add(infoLabelP1, 0, 0);
 		infoGrid.add(infoLabelP2, 0, 1);
-		
+
 		gridBottom.add(infoGrid, 3, 0);
-		// Menübar
+		// Menï¿½bar
 		MenuBar menuBar = new MenuBar();
 
 		Menu menuRestart = new Menu("Restart");
@@ -492,7 +504,7 @@ public class GameFrame extends Application {
 
 		menuBar.getMenus().addAll(menuRestart);
 
-		// Menübar ende
+		// Menï¿½bar ende
 
 		// PrimaryStage
 		primaryStage.setTitle("Oware");
@@ -517,30 +529,30 @@ public class GameFrame extends Application {
 		BorderPane king = new BorderPane();
 		BorderPane master = new BorderPane();
 		GridPane grid = new GridPane();
-		Label Schritt1 = new Label("\n\n\n1. Wähle deinen Gegenspieler\n"
-				+ "2. Gib deinen Namen ein und den deines Gegenspielers \n    bzw. wähle die Schwierigkeit des Gegners.\n"
-				+ "3. Jeder Spieler besitzt 6 Mulden mit jeweils 4 Steinen. Gesaet wird gegen den\n    Uhrzeigersinn.Dabei wird jedesmal ein Stein im nachfolgenden Feld abgelegt.\n    Erreicht man die Ausgangsmulde, wird diese übersprungen ohne einen Stein abzulegen.\n    Der 'End'-Button beendet das Spiel sofort und alle Spieler erhalten die Steine auf ihrer Seite.\n"
-				+ "4. Wenn in einem Zug zum Abschluss des Aussäens der Spielsteine in der\n    gegnerischen Mulde des letzten gesäten Steins (inklusive des letzten gesäten\n    Steins) zwei oder drei Steine liegen, dann werden diese Steine gefangen.\n    Liegen in den Mulden davor ebenfalls zwei oder drei Steine werden diese ebenfalls\n    gefangen.\n"
-				+ "5. Wenn der Gegner keine Steine mehr hat, muss man so säen, dass er wieder Steine bekommt.\n    Ist dies nicht möglich nimmt der Spieler die Steine in sein Gewinndepot auf.\n"
+		Label Schritt1 = new Label("\n\n\n1. Wï¿½hle deinen Gegenspieler\n"
+				+ "2. Gib deinen Namen ein und den deines Gegenspielers \n    bzw. wï¿½hle die Schwierigkeit des Gegners.\n"
+				+ "3. Jeder Spieler besitzt 6 Mulden mit jeweils 4 Steinen. Gesaet wird gegen den\n    Uhrzeigersinn.Dabei wird jedesmal ein Stein im nachfolgenden Feld abgelegt.\n    Erreicht man die Ausgangsmulde, wird diese ï¿½bersprungen ohne einen Stein abzulegen.\n    Der 'End'-Button beendet das Spiel sofort und alle Spieler erhalten die Steine auf ihrer Seite.\n"
+				+ "4. Wenn in einem Zug zum Abschluss des Aussï¿½ens der Spielsteine in der\n    gegnerischen Mulde des letzten gesï¿½ten Steins (inklusive des letzten gesï¿½ten\n    Steins) zwei oder drei Steine liegen, dann werden diese Steine gefangen.\n    Liegen in den Mulden davor ebenfalls zwei oder drei Steine werden diese ebenfalls\n    gefangen.\n"
+				+ "5. Wenn der Gegner keine Steine mehr hat, muss man so sï¿½en, dass er wieder Steine bekommt.\n    Ist dies nicht mï¿½glich nimmt der Spieler die Steine in sein Gewinndepot auf.\n"
 				+ "6. Gewonnen hat der Spieler, der zuerst mehr als 24 Steine hat.");
 		Schritt1.getStyleClass().add("labelProg");
 
 		grid.add(Schritt1, 0, 0);
-		
+
 		//Toolbar
-		
+
 		Button back = new Button("Back");
 		back.setOnAction((ActionEvent e) -> {
 			vsChoice(primaryStage);
 		});
 		back.getStyleClass().add("buttonBack2");
-		
+
 		//Toolbar
-		
+
 		grid.setHgap(50);
 		grid.setVgap(50);
 		grid.setAlignment(Pos.CENTER);
-		
+
 		master.setCenter(grid);
 		king.setBottom(back);
 		king.setTop(master);
@@ -553,5 +565,9 @@ public class GameFrame extends Application {
 
 	private void restart(Stage primaryStage) {
 		vsChoice(primaryStage);
+	}
+
+	public void toogleKIButton() {
+		turnKIButton.setDisable(false);
 	}
 }
