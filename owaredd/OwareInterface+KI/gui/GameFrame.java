@@ -90,6 +90,7 @@ public class GameFrame extends Application {
 
 		turnKIButton = new Button("KI");
 		turnKIButton.setVisible(false);
+		turnKIButton.setDisable(true);
 		turnKIButton.setOnAction( e -> {
 			((KI)player1).turn(board);
 			turnKIButton.setDisable(true);
@@ -155,6 +156,9 @@ public class GameFrame extends Application {
 	 * der Gewinner bzw unentschieden ausgegeben werden
 	 */
 	public void gameEnde() {
+
+		turnKIButton.setDisable(true);
+		turnKIButton.setVisible(false);
 
 		board.endeSteal();
 
@@ -521,7 +525,9 @@ public class GameFrame extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.show();
 
-		board.checkKITurn(); // Falls der KI als erstes dran ist
+		if(board.checkKITurn()){			// Falls der KI als erstes dran ist
+			enableKIButton();
+		}
 	}
 
 	private void anleitung(Stage primaryStage) {
@@ -567,7 +573,8 @@ public class GameFrame extends Application {
 		vsChoice(primaryStage);
 	}
 
-	public void toogleKIButton() {
+	public void enableKIButton() {
+
 		turnKIButton.setDisable(false);
 	}
 }

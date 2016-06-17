@@ -166,7 +166,7 @@ public class Board {
 					frame.printButtonValues(); // Aktualisiert buttons
 
 					if (!winnerCheck() && checkKITurn()) // �berpr�ft ob gegner eine KI ist
-						frame.toogleKIButton();
+						frame.enableKIButton();
 				} else {
 					frame.setInfoP1("\t\t"+this.player[spielerZug ^ 1].getName() + " hat "
 							+ (this.player[spielerZug ^ 1].getSpielSteineSpieler() - tempPunkte) + " Steine geraubt");// Aktualisiert
@@ -174,7 +174,7 @@ public class Board {
 					frame.printButtonValues(); // Aktualisiert buttons
 
 					if (!winnerCheck() && checkKITurn()) { // �berpr�ft ob gegner eine KI ist
-						frame.toogleKIButton();
+						frame.enableKIButton();
 					}
 				}
 			}
