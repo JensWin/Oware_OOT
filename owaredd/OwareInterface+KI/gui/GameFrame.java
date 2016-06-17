@@ -413,7 +413,7 @@ public class GameFrame extends Application {
 		GridPane grid = new GridPane();
 		Label teamLeader = new Label("Team-Leiter:\nFabian Laier");
 		Label designer = new Label("Designer:\nDominique Bost\nMelissa Zindl\nMandy Schmitt");
-		Label programmierer = new Label("Programmierer:\nJens Windisch\nJan Spliethoff\nMarkus C�llen");
+		Label programmierer = new Label("Programmierer:\nJens Windisch\nJan Spliethoff\nMarkus Coellen");
 		Label tester = new Label("Tester:\nJennifer Brenner\nPatrick Hentschel\nSebastian Schuler");
 		Label extras = new Label("Extras:\nPaint-SkillzZz\nby Markus & Jens");
 
@@ -535,11 +535,11 @@ public class GameFrame extends Application {
 		BorderPane king = new BorderPane();
 		BorderPane master = new BorderPane();
 		GridPane grid = new GridPane();
-		Label Schritt1 = new Label("\n\n\n1. W�hle deinen Gegenspieler\n"
-				+ "2. Gib deinen Namen ein und den deines Gegenspielers \n    bzw. w�hle die Schwierigkeit des Gegners.\n"
-				+ "3. Jeder Spieler besitzt 6 Mulden mit jeweils 4 Steinen. Gesaet wird gegen den\n    Uhrzeigersinn.Dabei wird jedesmal ein Stein im nachfolgenden Feld abgelegt.\n    Erreicht man die Ausgangsmulde, wird diese �bersprungen ohne einen Stein abzulegen.\n    Der 'End'-Button beendet das Spiel sofort und alle Spieler erhalten die Steine auf ihrer Seite.\n"
-				+ "4. Wenn in einem Zug zum Abschluss des Auss�ens der Spielsteine in der\n    gegnerischen Mulde des letzten ges�ten Steins (inklusive des letzten ges�ten\n    Steins) zwei oder drei Steine liegen, dann werden diese Steine gefangen.\n    Liegen in den Mulden davor ebenfalls zwei oder drei Steine werden diese ebenfalls\n    gefangen.\n"
-				+ "5. Wenn der Gegner keine Steine mehr hat, muss man so s�en, dass er wieder Steine bekommt.\n    Ist dies nicht m�glich nimmt der Spieler die Steine in sein Gewinndepot auf.\n"
+		Label Schritt1 = new Label("\n\n\n1. Waehle deinen Gegenspieler\n"
+				+ "2. Gib deinen Namen ein und den deines Gegenspielers \n    bzw. waehle die Schwierigkeit des Gegners.\n"
+				+ "3. Jeder Spieler besitzt 6 Mulden mit jeweils 4 Steinen. Gesaet wird gegen den\n    Uhrzeigersinn.Dabei wird jedesmal ein Stein im nachfolgenden Feld abgelegt.\n    Erreicht man die Ausgangsmulde, wird diese uebersprungen ohne einen Stein abzulegen.\n    Der 'End'-Button beendet das Spiel sofort und alle Spieler erhalten die Steine auf ihrer Seite.\n"
+				+ "4. Wenn in einem Zug zum Abschluss des Aussaeens der Spielsteine in der\n    gegnerischen Mulde des letzten gesaeten Steins (inklusive des letzten gesaeten\n    Steins) zwei oder drei Steine liegen, dann werden diese Steine gefangen.\n    Liegen in den Mulden davor ebenfalls zwei oder drei Steine werden diese ebenfalls\n    gefangen.\n"
+				+ "5. Wenn der Gegner keine Steine mehr hat, muss man so saeen, dass er wieder Steine bekommt.\n    Ist dies nicht m�glich nimmt der Spieler die Steine in sein Gewinndepot auf.\n"
 				+ "6. Gewonnen hat der Spieler, der zuerst mehr als 24 Steine hat.");
 		Schritt1.getStyleClass().add("labelProg");
 
