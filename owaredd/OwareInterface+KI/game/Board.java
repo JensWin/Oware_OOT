@@ -165,7 +165,7 @@ public class Board {
 					// Text
 					frame.printButtonValues(); // Aktualisiert buttons
 
-					if (!winnerCheck() && checkKITurn()) // �berpr�ft ob gegner eine KI ist
+					if (!winnerCheck() && isKITurn()) // �berpr�ft ob gegner eine KI ist
 						frame.enableKIButton();
 				} else {
 					frame.setInfoP1("\t\t"+this.player[spielerZug ^ 1].getName() + " hat "
@@ -173,7 +173,7 @@ public class Board {
 					// Text
 					frame.printButtonValues(); // Aktualisiert buttons
 
-					if (!winnerCheck() && checkKITurn()) { // �berpr�ft ob gegner eine KI ist
+					if (!winnerCheck() && isKITurn()) { // �berpr�ft ob gegner eine KI ist
 						frame.enableKIButton();
 					}
 				}
@@ -212,7 +212,7 @@ public class Board {
 	/**
 	 * checkKIturn() Prueft ob der naechste Zug ein Computerzug ist
 	 */
-	public boolean checkKITurn() {
+	public boolean isKITurn() {
 		if (this.player[spielerZug].getKI()) {
 			return true;
 		}

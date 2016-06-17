@@ -56,6 +56,7 @@ public class GameFrame extends Application {
 			buttons[0][i] = new Button(i + "");
 			gridButtons.add(buttons[0][i], p, 5);
 			buttons[0][i].setVisible(true);
+			buttons[0][i].setOnKeyPressed(e -> e.consume());
 			buttons[0][i].setPadding(new Insets(50, 50, 50, 50));
 			p++;
 		}
@@ -64,6 +65,7 @@ public class GameFrame extends Application {
 			buttons[1][i] = new Button(i + "");
 			gridButtons.add(buttons[1][i], i, 10);
 			buttons[1][i].setVisible(true);
+			buttons[1][i].setOnKeyPressed(e -> e.consume());
 			buttons[1][i].setPadding(new Insets(50, 50, 50, 50));
 		}
 
@@ -91,6 +93,7 @@ public class GameFrame extends Application {
 		turnKIButton = new Button("KI");
 		turnKIButton.setVisible(false);
 		turnKIButton.setDisable(true);
+		turnKIButton.setOnKeyPressed( e -> e.consume());
 		turnKIButton.setOnAction( e -> {
 			((KI)player1).turn(board);
 			turnKIButton.setDisable(true);
@@ -115,7 +118,7 @@ public class GameFrame extends Application {
 				} else
 					buttons[j][i].setText(board.board[j][i] + "");
 
-				if(board.checkKITurn()){ //Wenn KI am zug keine eingabe moeglich
+				if(board.isKITurn()){ //Wenn KI am zug keine eingabe moeglich
 					buttons[j][i].setDisable(true);
 				} else if (board.check(j, i)) { // Buttons werden disabled
 					buttons[j][i].setDisable(false);
@@ -188,11 +191,13 @@ public class GameFrame extends Application {
 		BorderPane border = new BorderPane();
 
 		Button vsPlayerB = new Button("vsPlayer");
+		vsPlayerB.setOnKeyPressed( e -> e.consume());
 		vsPlayerB.setOnAction((ActionEvent e) -> {
 			vsPlayer(primaryStage);
 		});
 
 		Button vsKIB = new Button("   vsKI   ");
+		vsKIB.setOnKeyPressed(e -> e.consume());
 		vsKIB.setOnAction((ActionEvent e) -> {
 			vsKI(primaryStage);
 		});
@@ -245,6 +250,7 @@ public class GameFrame extends Application {
 
 
 		Button start = new Button("Start Game!");
+		start.setOnKeyPressed(e -> e.consume());
 		start.setOnAction((ActionEvent e) -> {
 			if (name1Field.getText().isEmpty() || name1Field.getText().length() > 20) {
 				player1 = new Player("Player 1");
@@ -303,6 +309,8 @@ public class GameFrame extends Application {
 
 		Scene scene = new Scene(border, 1000, 800);
 		scene.getStylesheets().add("gui/Skin.css");
+		scene.setOnKeyPressed(event -> System.out.println("BLa "+event.getText()));
+		scene.setOnMouseClicked(event -> System.out.println("Blubb"));
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
@@ -335,6 +343,7 @@ public class GameFrame extends Application {
 		rb3.getStyleClass().add("buttonKI");
 
 		Button start = new Button("Start Game!");
+		start.setOnKeyPressed(e -> e.consume());
 		start.setOnAction((ActionEvent e) -> {
 			if (nameField.getText().isEmpty() || nameField.getText().length() > 20) {
 				this.player2 = new Player("Player 2");
@@ -430,10 +439,12 @@ public class GameFrame extends Application {
 		grid.add(extras, 0, 2);
 
 		Button back = new Button("Back");
+		back.setOnKeyPressed(e -> e.consume());
 		back.getStyleClass().add("buttonBack");
 		back.setOnAction((ActionEvent e) -> {
 			vsChoice(primaryStage);
 		});
+
 
 		grid.setHgap(50);
 		grid.setVgap(50);
@@ -445,6 +456,8 @@ public class GameFrame extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
+
+
 	}
 
 	public void Game(Board board, Stage primaryStage) {
@@ -472,7 +485,9 @@ public class GameFrame extends Application {
 
 		endButton = new Button("End");
 		endButton.getStyleClass().add("buttonEnde");
-
+		endButton.setOnKeyPressed(event -> {
+			event.consume();
+		});
 		endButton.setOnAction((ActionEvent e) -> {
 			gameEnde();
 		});
@@ -525,7 +540,7 @@ public class GameFrame extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.show();
 
-		if(board.checkKITurn()){			// Falls der KI als erstes dran ist
+		if(board.isKITurn()){			// Falls der KI als erstes dran ist
 			enableKIButton();
 		}
 	}
@@ -548,6 +563,7 @@ public class GameFrame extends Application {
 		//Toolbar
 
 		Button back = new Button("Back");
+		back.setOnKeyPressed(e -> e.consume());
 		back.setOnAction((ActionEvent e) -> {
 			vsChoice(primaryStage);
 		});
