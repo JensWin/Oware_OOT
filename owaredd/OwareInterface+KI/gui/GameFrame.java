@@ -24,7 +24,8 @@ public class GameFrame extends Application {
 	Player player1;
 	Player player2;
 
-	private GridPane gridButtons;
+	private VBox gameFieldBox;
+	//private GridPane gridButtons;
 	private Button[][] buttons;
 	private Label labelP1;
 	private Label labelP2;
@@ -48,6 +49,11 @@ public class GameFrame extends Application {
 	 * @param buttons
 	 */
 	public void initializeButtons(Button[][] buttons) {
+		GridPane gridButtons = new GridPane();
+		gridButtons.setAlignment(Pos.CENTER);
+
+		VBox kiButtonBox = new VBox();
+		kiButtonBox.setAlignment(Pos.CENTER);
 		/*
 		 * Die Reihe des oberen Spielers muss r�ckw�rts ausgegeben werden
 		 */
@@ -90,7 +96,7 @@ public class GameFrame extends Application {
 
 		}
 
-		turnKIButton = new Button("KI");
+		turnKIButton = new Button("KI Zug");
 		turnKIButton.setVisible(false);
 		turnKIButton.setDisable(true);
 		turnKIButton.setOnKeyPressed( e -> e.consume());
@@ -98,9 +104,11 @@ public class GameFrame extends Application {
 			((KI)player1).turn(board);
 			turnKIButton.setDisable(true);
 		});
-		//TODO Button Location
-		gridButtons.add(turnKIButton,2,0);
+		kiButtonBox.getChildren().add(turnKIButton);
 		printButtonValues();
+
+		gameFieldBox.getChildren().add(turnKIButton);
+		gameFieldBox.getChildren().add(gridButtons);
 	}
 
 	/**
@@ -211,6 +219,7 @@ public class GameFrame extends Application {
 		grid.setVgap(50);
 		// Men�bar
 		MenuBar menuBar = new MenuBar();
+		menuBar.setOnKeyPressed(e -> e.consume());
 
 		Menu menuHelp = new Menu("Help");
 
@@ -309,8 +318,6 @@ public class GameFrame extends Application {
 
 		Scene scene = new Scene(border, 1000, 800);
 		scene.getStylesheets().add("gui/Skin.css");
-		scene.setOnKeyPressed(event -> System.out.println("BLa "+event.getText()));
-		scene.setOnMouseClicked(event -> System.out.println("Blubb"));
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
@@ -474,8 +481,10 @@ public class GameFrame extends Application {
 		gridTop.setAlignment(Pos.CENTER);
 
 		// Middle
-		gridButtons = new GridPane();
-		gridButtons.setAlignment(Pos.CENTER);
+		gameFieldBox = new VBox();
+		gameFieldBox.setAlignment(Pos.CENTER);
+		//gridButtons = new GridPane();
+		//gridButtons.setAlignment(Pos.CENTER);
 		buttons = new Button[2][6];
 		initializeButtons(buttons);
 
@@ -530,7 +539,7 @@ public class GameFrame extends Application {
 		BorderPane master = new BorderPane();
 		BorderPane king = new BorderPane();
 		master.setTop(gridTop);
-		master.setCenter(gridButtons);
+		master.setCenter(gameFieldBox);
 		master.setBottom(gridBottom);
 		king.setCenter(master);
 		king.setTop(menuBar);
