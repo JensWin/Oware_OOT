@@ -1,2 +1,50 @@
-Button KI
-	-sollte Zug beenden, oder ähnliches heißen um den Sinn wiederzugeben
+
+	Im Spiel
+
+	- die Schriftfarbe zum Auswählen des Schwierigkeitgrads ist schwarz --> auf dem Hintergrund kaum lesbar
+	
+		-- Gefixed.
+	
+	- Spielzug von KI schon ausgeführt, wenn er den ersten Zug macht, wenn das Spielfeld angezeigt wird --> evtl. verwirrend
+	
+		-- Geht nicht anders. Programm h�ngt sich auf oder st�rzt ab, das komplette Programm m�sste anders ausgelegt werden.
+	
+	- Spiel gegen Computer: manchmal muss man mittendrin den Zug des Computers ausfuehren, danach funktioniert er wieder normal.
+		Rausfinden wann der Fehler auftritt! Tritt bis jetzt nur im Schwierigkeitsgrad "normal" auf, scheint nur den Spielmodus normal zu betreffen easy und hard 
+		wurden getestet und waren fehlerfrei.
+		
+		-- sollte gefixed sein.
+	
+	- Spieler kann den Namen beliebig lang machen --> Anzahl der geraubten Steine nicht mehr erkennbar
+	
+		-- Maximal 20 Zeichen, wenn mehr eingegeben werden, wird der Name auf Player1 bzw. Player2 gesetzt.
+	
+	- In den Infos steht nur wie viele Steine der Computer raubt, vielleicht sollte man auch die geraubten Steine des Spielers unten ausgeben
+	
+		-- Fixed. Wird jetzt f�r beide angezeigt und der Gewinner �ber dem Spielfeld.
+	
+	- Spiel beendet sich manchmal nicht richtig
+	
+		-- Scheint zu gehen. 
+		
+GameDesign 
+	
+	- Der Back-Button und der Restart-Button, wenn man Anleitung anklickt, tun beide das selbe. Restart-Button sollte gel�scht werden. 
+		Back-Button hat unn�tiges Dropdown mit einem weiteren Button, welcher das tut was der Back-Button tun sollte.
+	
+		-- Restart aus Anleitung entfernt. Back in Anleitung ge�ndert, sieht noch komisch aus, wird noch verbessert, wenn Fehlerstelle gefunden.
+			Danach wirds evtl. �berall eingebaut
+	
+	- Start Game Button bei vsKI und vsPlayer sollte eher im Feld sein als oben rechts und auch keinen unn�tigen Dropdown-Button.
+		
+		-- War eigtl nur zu Testzwecken, vergessen wieder umzustellen. Jetzt wieder im Feld.
+		
+	- Anleitung sollte eine andere Farbe haben, sowie eine gr��ere Schrift und vielleicht zentriert sein.
+	- �ndern wir das Hintergrundbild noch? Falls nicht sollten wir eine andere Farbe als Orange nehmen
+		
+		-- Github hat Hintergrund nicht hochgeladen.
+	
+	
+	
+	-Button KI sollte Zug beenden, oder ähnliches heißen um den Sinn wiederzugeben
+	

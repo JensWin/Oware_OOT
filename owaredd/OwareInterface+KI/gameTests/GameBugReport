@@ -12,54 +12,7 @@ Klasse Player
 Player vollstÃ¤ndig getestet 
 
 
-Im Spiel
 
-	- die Schriftfarbe zum AuswÃ¤hlen des Schwierigkeitgrads ist schwarz --> auf dem Hintergrund kaum lesbar
-	
-		-- Gefixed.
-	
-	- Spielzug von KI schon ausgefÃ¼hrt, wenn er den ersten Zug macht, wenn das Spielfeld angezeigt wird --> evtl. verwirrend
-	
-		-- Geht nicht anders. Programm hängt sich auf oder stürzt ab, das komplette Programm müsste anders ausgelegt werden.
-	
-	- Spiel gegen Computer: manchmal muss man mittendrin den Zug des Computers ausfuehren, danach funktioniert er wieder normal.
-		Rausfinden wann der Fehler auftritt! Tritt bis jetzt nur im Schwierigkeitsgrad "normal" auf, scheint nur den Spielmodus normal zu betreffen easy und hard 
-		wurden getestet und waren fehlerfrei.
-		
-		-- sollte gefixed sein.
-	
-	- Spieler kann den Namen beliebig lang machen --> Anzahl der geraubten Steine nicht mehr erkennbar
-	
-		-- Maximal 20 Zeichen, wenn mehr eingegeben werden, wird der Name auf Player1 bzw. Player2 gesetzt.
-	
-	- In den Infos steht nur wie viele Steine der Computer raubt, vielleicht sollte man auch die geraubten Steine des Spielers unten ausgeben
-	
-		-- Fixed. Wird jetzt für beide angezeigt und der Gewinner über dem Spielfeld.
-	
-	- Spiel beendet sich manchmal nicht richtig
-	
-		-- Scheint zu gehen. 
-		
-GameDesign 
-	
-	- Der Back-Button und der Restart-Button, wenn man Anleitung anklickt, tun beide das selbe. Restart-Button sollte gelöscht werden. 
-		Back-Button hat unnötiges Dropdown mit einem weiteren Button, welcher das tut was der Back-Button tun sollte.
-	
-		-- Restart aus Anleitung entfernt. Back in Anleitung geändert, sieht noch komisch aus, wird noch verbessert, wenn Fehlerstelle gefunden.
-			Danach wirds evtl. überall eingebaut
-	
-	- Start Game Button bei vsKI und vsPlayer sollte eher im Feld sein als oben rechts und auch keinen unnötigen Dropdown-Button.
-		
-		-- War eigtl nur zu Testzwecken, vergessen wieder umzustellen. Jetzt wieder im Feld.
-		
-	- Anleitung sollte eine andere Farbe haben, sowie eine größere Schrift und vielleicht zentriert sein.
-	- Ändern wir das Hintergrundbild noch? Falls nicht sollten wir eine andere Farbe als Orange nehmen
-		
-		-- Github hat Hintergrund nicht hochgeladen.
-	
-	
-	
-	
 	
 	
 	
